@@ -1,0 +1,8 @@
+[
+    { id: "front", text: "首页",},
+	{ id: "frontPage", pid: "front", text: "首页", url: "/welcome" },
+
+    { id: "test", text: "hello",},
+	{ id: "testPage", pid: "test", text: "hello", url: "/index" },
+
+]

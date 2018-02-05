@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MainController {
+
+
+
+
     //2018.2.5 Kinjer 移除
 //    @RequestMapping(value = {"", "/"})
 //    public String index() {
@@ -15,20 +19,47 @@ public class MainController {
 //    }
 
     //start 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
+//    @RequestMapping(value = {"", "/"})
+//    public String layout() {
+//        return "layout";
+//    }
+
+//    @RequestMapping(value = "/welcome")
+//    public String welcome(){
+//        return "welcome";
+//    }
+//
+//    @RequestMapping(value = "/index")
+//    public String index(){
+//        return "index";
+//    }
+    //end 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
+
+
     @RequestMapping(value = {"", "/"})
-    public String layout() {
+    public String login() {
+
+        return "login";
+    }
+
+
+    @RequestMapping("/loginsubmit")
+    public String layout(String username, String password) {
+
+        System.out.println(username + ":" + password);
+
         return "layout";
     }
 
-    @RequestMapping(value = "/welcome")
-    public String welcome(){
-        return "welcome";
+
+    @RequestMapping("/RightBody_Manage")
+    public String manage(){
+
+        return "RightBody_Manage";
+
     }
 
-    @RequestMapping(value = "/index")
-    public String index(){
-        return "index";
-    }
-    //end 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
+
+
 
 }

@@ -26,12 +26,12 @@ public class MainController {
     }
 
     @RequestMapping(value = "/welcome")
-    public String welcome(){
+    public String welcome() {
         return "welcome";
     }
 
     @RequestMapping(value = "/index")
-    public String index(){
+    public String index() {
         return "index";
     }
     //end 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
@@ -43,20 +43,17 @@ public class MainController {
     }
 
 
-
     @RequestMapping("/RightBody_Manage")
-    public String manage(){
+    public String manage() {
 
         return "RightBody_Manage";
 
     }
 
     @RequestMapping("/RightBody_Factory")
-    public String factory(){
+    public String factory() {
         return "RightBody_Factory";
     }
-
-
 
 
     @RequestMapping(value = "/loginsubmit")
@@ -70,8 +67,13 @@ public class MainController {
         } else {
             error = "未知错误:" + exClassName;
         }
-        ModelAndView mav=new ModelAndView("login");
+        ModelAndView mav = new ModelAndView("login");
         mav.addObject("error", error);
         return mav;
+    }
+
+    @RequestMapping("/RightBody_Hurt")
+    public String rightBodyHurt() {
+        return "RightBody_Hurt";
     }
 }

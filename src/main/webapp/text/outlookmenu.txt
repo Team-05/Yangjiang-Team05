@@ -5,6 +5,9 @@
     { id: "right", text: "综合管理",},
     { id: "management", pid: "right", text: "厂房管理", url: "/RightBody_Manage" },
     { id: "unit", pid: "right", text: "机组管理", url: "/RightBody_Factory" },
+    { id: "hurt", pid: "right", text: "射线探伤人员管理", url: "/RightBody_Hurt" },
+
+
     { id: "test", text: "hello",},
 	{ id: "testPage", pid: "test", text: "hello", url: "/index" },
 

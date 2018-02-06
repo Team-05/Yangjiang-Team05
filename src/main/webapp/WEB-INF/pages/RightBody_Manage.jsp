@@ -33,6 +33,10 @@
             color: #427dc0;
         }
 
+        html body .user_add .mini-buttonedit-icon {
+            background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
+        }
+
     </style>
 </head>
 <body>
@@ -57,7 +61,7 @@
                                     <td style="width:80px">厂房经理</td>
                                     <td>
                                         <input id="btnEdit3" style="width: 200%"
-                                               class="mini-buttonedit"
+                                               class="mini-buttonedit user_add"
                                                allowInput="false"
                                                onbuttonclick="onClazzButtonEdit"
                                                name="cid" textName="cname"/>                                    </td>
@@ -71,7 +75,7 @@
                                     <td style="width:80px">机组</td>
                                     <td>
                                         <input id="btnEdit2" style="width: 200%"
-                                               class="mini-buttonedit"
+                                               class="mini-buttonedit user_add"
                                                allowInput="false"
                                                onbuttonclick="onStudentButtonEdit"
                                                name="cid" textName="cname"/>

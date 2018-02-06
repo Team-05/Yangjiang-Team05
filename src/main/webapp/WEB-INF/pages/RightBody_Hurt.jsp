@@ -32,9 +32,7 @@
             background-color: #daeeff;
             color: #427dc0;
         }
-        html body .user_add .mini-buttonedit-icon {
-            background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
-        }
+
 
 
     </style>
@@ -47,24 +45,37 @@
             </tr>
             <tr>
                 <td>
-                    <div id="layout1" class="mini-layout" style="width:100%; height: 100px;"
+                    <div id="layout1" class="mini-layout" style="width:100%; height: 150px;"
                          borderStyle="border:solid 1px #aaa;">
-                        <div title="查询条件" style="background-color: #daeeff" region="north" height="100"
+                        <div title="查询条件" style="background-color: #daeeff" region="north" height="150"
                              showSplitIcon="true">
                             <table>
-                                <tr style="text-align: center">
-                                    <td style="width:80px">机组名称</td>
+                                <tr>
+                                    <td style="width:80px">姓名</td>
                                     <td>
-                                        <input id="date1" style="width: 200%"/>
+                                        <input id="name" style="width: 200%"/>
                                     </td>
                                     <td style="width: 30%"></td>
-                                    <td style="width:80px">机组管理人</td>
+                                    <td style="width:80px">通行卡号</td>
                                     <td>
-                                        <input id="btnEdit3" style="width: 200%"
-                                               class="mini-buttonedit user_add"
-                                               allowInput="false"
-                                               onbuttonclick="onClazzButtonEdit"
-                                               name="cid" textName="cname"/>                                    </td>
+                                        <input id="cardNumber" style="width: 200%"/>                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80px">单位</td>
+                                    <td>
+                                        <input id="workAddress" style="width: 200%"/>
+                                    </td>
+                                    <td style="width: 30%"></td>
+                                    <td style="width:80px">员工号</td>
+                                    <td>
+                                        <input id="staffNumber" style="width: 200%"/>
+                                </tr>
+                                <tr>
+                                    <td style="width:80px">关键字</td>
+                                    <td>
+                                        <input id="keyWord" style="width: 200%"/>
+                                    </td>
+
                                 </tr>
                             </table>
                         </div>
@@ -81,9 +92,13 @@
                          value="cn" onvaluechanged="onListBoxValueChanged"
                          url="../text/unit.txt" showCheckBox="true" multiSelect="true">
                         <div property="columns">
-                            <div header="机组名称" field="unitName"></div>
-                            <div header="机组管理人" field="factoryPerson"></div>
-                            <div header="创建时间" field="createTime"></div>
+                            <div header="姓名" field="name"></div>
+                            <div header="通行卡号" field="cardNumber"></div>
+                            <div header="单位" field="workAddress"></div>
+                            <div header="RT级别" field="rtLevel"></div>
+                            <div header="RT编号" field="rtNumber"></div>
+                            <div header="开始日期" field="startTime"></div>
+                            <div header="结束日期" field="endTime"></div>
                         </div>
                     </div>
                 </td>
@@ -99,6 +114,7 @@
                 </td>
             </tr>
         </table>
+
 
 
 <script type="text/javascript">
@@ -118,8 +134,8 @@
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
-            title: "选择机组管理员",
+            url: "page/SelectGridWindow.html",
+            title: "选择班级",
             width: 650,
             height: 380,
             ondestroy: function (action) {
@@ -131,6 +147,29 @@
                     if (data) {
                         btnEdit.setValue(data.cid);
                         btnEdit.setText(data.cname);
+                    }
+                }
+
+            }
+        })
+    }
+    function onStudentButtonEdit(e) {
+        //加载mini组件 后面的get方法才好用
+        var btnEdit = this;
+        mini.open({
+            url: "page/SelectStudent.html",
+            title: "选择学生",
+            width: 650,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.sid);
+                        btnEdit.setText(data.sname);
                     }
                 }
 

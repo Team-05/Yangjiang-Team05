@@ -39,7 +39,7 @@ public class MainController {
     @RequestMapping(value = {"", "/"})
     public String login() {
 
-        return "login";
+        return "home1";
     }
 
 

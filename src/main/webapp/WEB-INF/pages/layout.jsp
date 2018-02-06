@@ -31,7 +31,7 @@
 </head>
 <body>
 <div id="layout1" class="mini-layout" style="width:100%;height:100%"  borderStyle="border:solid 1px #aaa;">
-    <div title="采购监管平台系统" region="north" showSplitIcon="true"
+    <div title="阳江业务管理平台" region="north" showSplitIcon="true"
          style="background-color: #e8ecf6; background:-moz-linear-gradient(top,#b2d1f5,grey); float: left;width: 100%;height: 15px">
         <span style="float: left"><h3>当前用户: </h3></span>
         <button style="float: right">个人工作台</button>

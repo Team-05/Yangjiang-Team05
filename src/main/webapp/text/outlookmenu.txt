@@ -5,4 +5,7 @@
     { id: "test", text: "hello",},
 	{ id: "testPage", pid: "test", text: "hello", url: "/index" },
 
+	{ id: "person_center", text: "个人中心",},
+    { id: "personPage", pid: "person_center", text: "个人工作平台", url: "/person_center/showPerson_center" },
+
 ]

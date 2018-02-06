@@ -39,7 +39,7 @@
           class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--数据库代理接口类所在的包-->
         <property name="basePackage"
-                  value="com.ssm.mapper"/>
+                  value="com.team05.mapper"/>
         <!--配置sqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName"
                   value="sqlSessionFactory"/>

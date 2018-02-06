@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.PersonCenterMapper">
+
+    <resultMap id="pcMap" type="com.team05.domain.personcenter.PersonCenter">
+        <id property="appId" column="APP_ID"/>
+        <result property="appType" column="APP_TYPE"/>
+        <result property="appDeptName" column="APP_DEPT_NAME"/>
+        <result property="status" column="STATUS"/>
+        <result property="flowAppStaffName" column="FLOW_APP_STAFF_NAME"/>
+        <result property="applyDate" column="APPLY_DATE"/>
+    </resultMap>
+
+
+    <select id="selectPCCount" resultType="java.lang.Integer"
+            parameterType="com.team05.domain.personcenter.PersonCenter">
+        SELECT COUNT(fa.APP_ID) FROM pms_flow_apply fa
+    </select>
+
+    <select id="selectPersonCenterDetail" resultMap="pcMap"
+            parameterType="com.team05.utils.PageBean">
+        SELECT fa.APP_ID,fa.APP_TYPE,fa.APP_DEPT_NAME,fa.STATUS,fa.FLOW_APP_STAFF_NAME,fa.APPLY_DATE FROM pms_flow_apply fa limit #{startIndex},#{pageSize}
+    </select>
+
+
+</mapper>

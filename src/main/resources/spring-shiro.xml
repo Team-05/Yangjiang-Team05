@@ -22,7 +22,7 @@
                 <!--anon:代表资源可以匿名访问-->
                 /js/**=anon
                 /css/**=anon
-                /image/**=anon
+                /img/**=anon
                 <!--authc需要认证才可以访问-->
                 /loginsubmit=authc
                 <!--退出-->

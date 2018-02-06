@@ -20,10 +20,10 @@ public class MainController {
 //    }
 
     //start 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
-//    @RequestMapping(value = {"", "/"})
-//    public String layout() {
-//        return "layout";
-//    }
+    @RequestMapping(value = {"", "/"})
+    public String layout() {
+        return "layout";
+    }
 
     @RequestMapping(value = "/welcome")
     public String welcome(){
@@ -37,20 +37,11 @@ public class MainController {
     //end 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
 
 
-    @RequestMapping(value = {"", "/"})
+    @RequestMapping("/login")
     public String login() {
-
-        return "home1";
+        return "login";
     }
 
-
-    @RequestMapping("/loginsubmit")
-    public String layout(String username, String password) {
-
-        System.out.println(username + ":" + password);
-
-        return "layout";
-    }
 
 
     @RequestMapping("/RightBody_Manage")

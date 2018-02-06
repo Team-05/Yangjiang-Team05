@@ -6,6 +6,7 @@ package com.team05.domain.personcenter;
 public class PersonCenter {
 //    private String APP_ID,APP_TYPE,APP_DEPT_NAME,STATUS,FLOW_APP_STAFF_NAME,APPLY_DATE;
     private String appId,appType,appDeptName,status,flowAppStaffName,applyDate;
+    private int handleFlag; //0代表待办，1代表已办
 
     public PersonCenter() {
     }
@@ -64,6 +65,14 @@ public class PersonCenter {
 
     public void setApplyDate(String applyDate) {
         this.applyDate = applyDate;
+    }
+
+    public int getHandleFlag() {
+        return handleFlag;
+    }
+
+    public void setHandleFlag(int handleFlag) {
+        this.handleFlag = handleFlag;
     }
 
     @Override

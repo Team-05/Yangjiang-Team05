@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team05.mapper.PersonCenterMapper">
 
+    <!--个人中心映射-->
     <resultMap id="pcMap" type="com.team05.domain.personcenter.PersonCenter">
         <id property="appId" column="APP_ID"/>
         <result property="appType" column="APP_TYPE"/>
@@ -13,16 +14,91 @@
         <result property="applyDate" column="APPLY_DATE"/>
     </resultMap>
 
+    <!--员工表映射-->
+    <resultMap id="applicantMap" type="com.team05.domain.base.Staff">
+        <id property="staffId" column="staff_id"/>
+        <result property="staffName" column="staff_name"/>
+        <result property="staffEmail" column="staff_email"/>
+        <result property="staffUsername" column="staff_username"/>
+        <result property="staffPwd" column="staff_pwd"/>
+        <result property="staffDepId" column="staff_dep_id"/>
+    </resultMap>
 
+    <!--部门表映射-->
+    <resultMap id="deptMap" type="com.team05.domain.base.Department">
+        <id property="depId" column="dep_id"/>
+        <result property="depName" column="dep_name"/>
+        <result property="chiefId" column="chief_id"/>
+    </resultMap>
+
+    <sql id="selectPCConditionSql">
+        <where>
+            <if test="flowAppStaffName != null and flowAppStaffName != ''">
+                AND FLOW_APP_STAFF_NAME = #{flowAppStaffName}
+            </if>
+            <if test="appDeptName != null and appDeptName != ''">
+                AND APP_DEPT_NAME = #{appDeptName}
+            </if>
+            <if test="applyDate != null and applyDate != ''">
+                AND APPLY_DATE LIKE '${applyDate}%'
+            </if>
+            <if test="appId != null and appId != ''">
+                AND APP_ID LIKE '%${appId}%'
+            </if>
+            <if test="handleFlag == 0 and status !=null and status!=''">
+                AND STATUS =#{status}
+            </if>
+            <if test="handleFlag == 1 and status !=null and status!=''">
+                AND STATUS != #{status}
+            </if>
+        </where>
+    </sql>
+
+
+    <!--查询个人中心信息条数-->
     <select id="selectPCCount" resultType="java.lang.Integer"
             parameterType="com.team05.domain.personcenter.PersonCenter">
         SELECT COUNT(fa.APP_ID) FROM pms_flow_apply fa
+        <include refid="selectPCConditionSql"/>
     </select>
 
+    <!--查询个人中心信息-->
     <select id="selectPersonCenterDetail" resultMap="pcMap"
             parameterType="com.team05.utils.PageBean">
-        SELECT fa.APP_ID,fa.APP_TYPE,fa.APP_DEPT_NAME,fa.STATUS,fa.FLOW_APP_STAFF_NAME,fa.APPLY_DATE FROM pms_flow_apply fa limit #{startIndex},#{pageSize}
+        SELECT fa.APP_ID,fa.APP_TYPE,fa.APP_DEPT_NAME,fa.STATUS,fa.FLOW_APP_STAFF_NAME,fa.APPLY_DATE FROM pms_flow_apply fa
+        <where>
+            <if test="parameter.flowAppStaffName != null and parameter.flowAppStaffName != ''">
+                AND FLOW_APP_STAFF_NAME = #{parameter.flowAppStaffName}
+            </if>
+            <if test="parameter.appDeptName != null and parameter.appDeptName != ''">
+                AND APP_DEPT_NAME = #{parameter.appDeptName}
+            </if>
+            <if test="parameter.applyDate != null and parameter.applyDate != ''">
+                AND APPLY_DATE LIKE '${parameter.applyDate}%'
+            </if>
+            <if test="parameter.appId != null and parameter.appId != ''">
+                AND APP_ID LIKE '%${parameter.appId}%'
+            </if>
+            <if test="parameter.handleFlag == 0 and parameter.status !=null and parameter.status!=''">
+                AND STATUS =#{parameter.status}
+            </if>
+            <if test="parameter.handleFlag == 1 and parameter.status !=null and parameter.status!=''">
+                AND STATUS != #{parameter.status}
+            </if>
+        </where>
+         limit #{startIndex},#{pageSize}
     </select>
+
+    <!--查询员工-->
+    <select id="selectApplicant" resultMap="applicantMap">
+        SELECT staff_id,staff_name FROM yj_staff
+    </select>
+
+    <!--查询部门-->
+    <select id="selectDept" resultMap="deptMap">
+        SELECT dep_id,dep_name FROM yj_department
+    </select>
+
 
 
 </mapper>

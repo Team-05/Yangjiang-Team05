@@ -28,6 +28,7 @@
             background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
         }
 
+
     </style>
 </head>
 <body>
@@ -49,26 +50,26 @@
                         <td style="width: 30%"></td>
                         <td style="width:80px">关键词</td>
                         <td>
-                            <input type="text" style="width: 200%;height: 25px" class="mini-textarea">
+                            <input id="appId1" type="text" style="width: 200%;height: 25px" class="mini-textarea">
                         </td>
                     </tr>
                     <tr>
                         <td style="width:80px">申请人</td>
                         <td>
-                            <input id="btnEdit1" style="width: 200%"
+                            <input id="applicant1" style="width: 200%"
                                    class="mini-buttonedit user_add"
                                    allowInput="false"
                                    onbuttonclick="onApplicantButtonEdit"
-                                   name="sid" textName="sname"/>
+                                   name="staffId" textName="staffName"/>
                         </td>
                         <td style="width: 30%"></td>
                         <td style="width:80px">所属部门</td>
                         <td>
-                            <input id="btnEdit2" style="width: 200%"
+                            <input id="dept1" style="width: 200%"
                                    class="mini-buttonedit user_add"
                                    allowInput="false"
                                    onbuttonclick="onDepartmentButtonEdit"
-                                   name="cid" textName="cname"/>
+                                   name="depId" textName="depName"/>
                         </td>
 
                     </tr>
@@ -92,8 +93,9 @@
                         <div field="appDeptName" width="120" headerAlign="center">所属部门</div>
                         <div field="status" width="120" headerAlign="center">当前环节</div>
                         <div field="flowAppStaffName" width="120" headerAlign="center">提报人</div>
-                        <div field="applyDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">提报时间</div>
-                        <div field="ctrl" width="120" headerAlign="center">操作</div>
+                        <div field="applyDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">提报时间
+                        </div>
+                        <div name="ctrl" width="120" headerAlign="center">操作</div>
                     </div>
                 </div>
 
@@ -119,26 +121,26 @@
                         <td style="width: 30%"></td>
                         <td style="width:80px">关键词</td>
                         <td>
-                            <input type="text" style="width: 200%;height: 25px" class="mini-textarea">
+                            <input id="appId2" type="text" style="width: 200%;height: 25px" class="mini-textarea">
                         </td>
                     </tr>
                     <tr>
                         <td style="width:80px">申请人</td>
                         <td>
-                            <input id="btnEdit3" style="width: 200%"
+                            <input id="applicant2" style="width: 200%"
                                    class="mini-buttonedit user_add"
                                    allowInput="false"
                                    onbuttonclick="onApplicantButtonEdit"
-                                   name="sid" textName="sname"/>
+                                   name="staffId" textName="staffName"/>
                         </td>
                         <td style="width: 30%"></td>
                         <td style="width:80px">所属部门</td>
                         <td>
-                            <input id="btnEdit4" style="width: 200%"
+                            <input id="dept2" style="width: 200%"
                                    class="mini-buttonedit user_add"
                                    allowInput="false"
                                    onbuttonclick="onDepartmentButtonEdit"
-                                   name="cid" textName="cname"/>
+                                   name="depId" textName="depName"/>
                         </td>
 
                     </tr>
@@ -162,85 +164,122 @@
                         <div field="appDeptName" width="120" headerAlign="center">所属部门</div>
                         <div field="status" width="120" headerAlign="center">当前环节</div>
                         <div field="flowAppStaffName" width="120" headerAlign="center">提报人</div>
-                        <div field="applyDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">提报时间</div>
-                        <div field="ctrl" width="120" headerAlign="center">操作</div>
+                        <div field="applyDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">提报时间
+                        </div>
+                        <div name="ctrl" width="120" headerAlign="center">操作</div>
                     </div>
                 </div>
 
             </div>
 
-
         </div>
+    </div>
+</div>
 
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
-            mini.parse();
-            var datagrid1 = mini.get("datagrid1");
-            datagrid1.load();
+    mini.parse();
+    var datagrid1 = mini.get("datagrid1");
+    datagrid1.load({handleFlag:0,status:1});
 
-            function search1() {
-                var key = mini.get("key1").getValue();
-                datagrid1.load({sname: key});
-            }
+    function search1() {
+        var applyDate = mini.get("date1").getFormValue("yyyy-MM-dd");
+        var appId = mini.get("appId1").getValue();
+        var flowAppStaffName = mini.get("applicant1").getValue();
+        var appDeptName = mini.get("dept1").getValue();
 
-            var datagrid2 = mini.get("datagrid2");
-            datagrid2.load();
+        datagrid1.load({handleFlag:0,applyDate:applyDate,appId:appId,flowAppStaffName:flowAppStaffName,appDeptName:appDeptName,status:1});
+    }
 
-            function search2() {
-                var key = mini.get("key2").getValue();
-                datagrid1.load({sname: key});
-            }
+    var datagrid2 = mini.get("datagrid2");
+    datagrid2.load({handleFlag:1,status:1});
+
+    function search2() {
+        var applyDate = mini.get("date2").getFormValue("yyyy-MM-dd");
+        var appId = mini.get("appId2").getValue();
+        var flowAppStaffName = mini.get("applicant2").getValue();
+        var appDeptName = mini.get("dept2").getValue();
+
+        datagrid1.load({handleFlag:1,applyDate:applyDate,appId:appId,flowAppStaffName:flowAppStaffName,appDeptName:appDeptName,status:1});
+    }
 
 
-            function onDepartmentButtonEdit(e) {
-                //加载mini组件 后面的get方法才好用
-                var btnEdit = this;
-                mini.open({
-                    url: "",
-                    title: "选择所属部门",
-                    width: 650,
-                    height: 380,
-                    ondestroy: function (action) {
-                        //if (action == "close") return false;
-                        if (action == "ok") {
-                            var iframe = this.getIFrameEl();
-                            var data = iframe.contentWindow.GetData();
-                            data = mini.clone(data);    //必须
-                            if (data) {
-                                btnEdit.setValue(data.cid);
-                                btnEdit.setText(data.cname);
-                            }
-                        }
-
+    function onDepartmentButtonEdit(e) {
+        //加载mini组件 后面的get方法才好用
+        var btnEdit = this;
+        mini.open({
+            url: "/person_center/deptGridWindow",
+            title: "选择所属部门",
+            width: 650,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.depName);
+                        btnEdit.setText(data.depName);
                     }
-                })
-            }
-            function onApplicantButtonEdit(e) {
-                //加载mini组件 后面的get方法才好用
-                var btnEdit = this;
-                mini.open({
-                    url: "",
-                    title: "选择申请人",
-                    width: 650,
-                    height: 380,
-                    ondestroy: function (action) {
-                        //if (action == "close") return false;
-                        if (action == "ok") {
-                            var iframe = this.getIFrameEl();
-                            var data = iframe.contentWindow.GetData();
-                            data = mini.clone(data);    //必须
-                            if (data) {
-                                btnEdit.setValue(data.sid);
-                                btnEdit.setText(data.sname);
-                            }
-                        }
+                }
 
+            }
+        })
+    }
+    function onApplicantButtonEdit(e) {
+        //加载mini组件 后面的get方法才好用
+        var btnEdit = this;
+        mini.open({
+            url: "/person_center/applicantGridWindow",
+            title: "选择申请人",
+            width: 650,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.staffName);
+                        btnEdit.setText(data.staffName);
                     }
-                })
+                }
+
             }
+        })
+    }
+
+    datagrid1.on("drawcell", function (e) {
+        var record = e.record,
+                column = e.column;
 
 
-        </script>
+        //ctrl列，超连接操作按钮
+        if (column.name == "ctrl") {
+            e.cellStyle = "text-align:center";
+            e.cellHtml = "<input type='button' value='办理' onclick=''/>";
+
+        }
+
+    });
+
+    datagrid2.on("drawcell", function (e) {
+        var record = e.record,
+                column = e.column;
+
+        //ctrl列，超连接操作按钮
+        if (column.name == "ctrl") {
+            e.cellStyle = "text-align:center";
+            e.cellHtml = "<input type='button' value='办理' onclick=''/>";
+
+        }
+
+    });
+
+
+</script>
 </body>
 </html>

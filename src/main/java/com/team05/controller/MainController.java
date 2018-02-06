@@ -20,29 +20,53 @@ public class MainController {
 //    }
 
     //start 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
-    @RequestMapping(value = {"", "/"})
-    public String layout() {
-        return "layout";
-    }
+//    @RequestMapping(value = {"", "/"})
+//    public String layout() {
+//        return "layout";
+//    }
 
     @RequestMapping(value = "/welcome")
-    public String welcome() {
+    public String welcome(){
         return "welcome";
     }
 
     @RequestMapping(value = "/index")
-    public String index() {
+    public String index(){
         return "index";
     }
     //end 2018.2.5 Kinjer 添加 实现layout，左侧menu，右侧内容的显示
 
 
-    //start 2018.2.5 wkingboss 添加权限认证登录
-    //登录表单验证
-    @RequestMapping(value = "/login")
-    public String loginPage() {
-        return "login";
+    @RequestMapping(value = {"", "/"})
+    public String login() {
+
+        return "home1";
     }
+
+
+    @RequestMapping("/loginsubmit")
+    public String layout(String username, String password) {
+
+        System.out.println(username + ":" + password);
+
+        return "layout";
+    }
+
+
+    @RequestMapping("/RightBody_Manage")
+    public String manage(){
+
+        return "RightBody_Manage";
+
+    }
+
+    @RequestMapping("/RightBody_Factory")
+    public String factory(){
+        return "RightBody_Factory";
+    }
+
+
+
 
     @RequestMapping(value = "/loginsubmit")
     public ModelAndView loginsubmit(HttpServletRequest request) throws Exception {

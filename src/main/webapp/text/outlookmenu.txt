@@ -2,6 +2,9 @@
     { id: "front", text: "首页",},
 	{ id: "frontPage", pid: "front", text: "首页", url: "/welcome" },
 
+    { id: "right", text: "综合管理",},
+    { id: "management", pid: "right", text: "厂房管理", url: "/RightBody_Manage" },
+    { id: "unit", pid: "right", text: "机组管理", url: "/RightBody_Factory" },
     { id: "test", text: "hello",},
 	{ id: "testPage", pid: "test", text: "hello", url: "/index" },
 

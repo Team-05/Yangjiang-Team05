@@ -1,0 +1,17 @@
+[
+    {
+    "unitName":"机组A",
+    "factoryName":"厂房A",
+    "factoryManager":"老王",
+    "factoryAddress":"地址A",
+    "createTime":"2018-02-6"
+
+    },
+    {
+    "unitName":"机组B",
+    "factoryName":"厂房B",
+    "factoryManager":"龙经理",
+    "factoryAddress":"地址B",
+    "createTime":"2018-02-6"
+     },
+]

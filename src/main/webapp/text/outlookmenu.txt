@@ -2,13 +2,20 @@
     { id: "front", text: "首页",},
 	{ id: "frontPage", pid: "front", text: "首页", url: "/welcome" },
 
-    { id: "right", text: "综合管理",},
-    { id: "management", pid: "right", text: "厂房管理", url: "/RightBody_Manage" },
-    { id: "unit", pid: "right", text: "机组管理", url: "/RightBody_Factory" },
     { id: "test", text: "hello",},
 	{ id: "testPage", pid: "test", text: "hello", url: "/index" },
 
 	{ id: "person_center", text: "个人中心",},
     { id: "personPage", pid: "person_center", text: "个人工作平台", url: "/person_center/showPerson_center" },
 
+    { id: "right", text: "综合管理",},
+    { id: "check", pid: "right", text: "综合查询", url: "/manage/check_manage" },
+    { id: "management", pid: "right", text: "厂房管理", url: "/manage/RightBody_Manage" },
+    { id: "unit", pid: "right", text: "机组管理", url: "/manage/RightBody_Factory" },
+    { id: "satellite", pid: "right", text:"卫星库管理人管理", url:"/manage/satellite_manage"},
+
+    { id: "project", text: "科研项目管理",},
+    { id: "apply", pid: "project", text: "项目成果与计划调整申请", url: "/project/project_apply" },
+    { id: "examine", pid: "project", text: "项目承担部门经理审批", url: "/project/project_examine" },
+    { id: "manage", pid: "project", text: "科研管理工程师处理", url: "/project/project_manager" },
 ]

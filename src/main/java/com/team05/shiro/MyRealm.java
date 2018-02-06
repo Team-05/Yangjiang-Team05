@@ -44,11 +44,11 @@ public class MyRealm extends AuthorizingRealm{
         //获得用户此次输入的用户名
         String username= (String) authenticationToken.getPrincipal();
         //此处应该拿username取数据苦衷查询,是否存在该用户
-        if(!"zhangsan".equals(username)){
+        if(!"1".equals(username)){
             throw new UnknownAccountException("用户名不存在");
         }
         String password= new String ((char[]) authenticationToken.getCredentials());
-        if(!"111".equals(password)){
+        if(!"1".equals(password)){
             throw new IncorrectCredentialsException("密码错误");
         }
         return new SimpleAuthenticationInfo(username,password,getName());

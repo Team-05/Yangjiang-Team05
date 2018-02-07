@@ -29,4 +29,9 @@ public class ManageController {
     public String satellite(){
         return "satellite_manage";
     }
+
+    @RequestMapping("/RightBody_Hurt")
+    public String rightBodyHurt() {
+        return "RightBody_Hurt";
+    }
 }

@@ -13,11 +13,14 @@
     { id: "check", pid: "right", text: "综合查询", url: "/manage/check_manage" },
     { id: "management", pid: "right", text: "厂房管理", url: "/manage/RightBody_Manage" },
     { id: "unit", pid: "right", text: "机组管理", url: "/manage/RightBody_Factory" },
-    { id: "hurt", pid: "right", text: "射线探伤人员管理", url: "/RightBody_Hurt" },
+    { id: "hurt", pid: "right", text: "射线探伤人员管理", url: "/manage/RightBody_Hurt" },
     { id: "satellite", pid: "right", text:"卫星库管理人管理", url:"/manage/satellite_manage"},
 
     { id: "project", text: "科研项目管理",},
     { id: "apply", pid: "project", text: "项目成果与计划调整申请", url: "/project/project_apply" },
     { id: "examine", pid: "project", text: "项目承担部门经理审批", url: "/project/project_examine" },
     { id: "manage", pid: "project", text: "科研管理工程师处理", url: "/project/project_manager" },
+    { id: "undertake", pid: "project", text: "承接外部科技项目申报", url: "/research/RightBody_Undertake" },
+
+
 ]

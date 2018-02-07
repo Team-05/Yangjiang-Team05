@@ -1,6 +1,5 @@
 package com.team05.controller;
 
-import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
@@ -43,13 +42,6 @@ public class MainController {
         return "login";
     }
 
-
-
-
-
-
-
-
     @RequestMapping(value = "/loginsubmit")
     public ModelAndView loginsubmit(HttpServletRequest request) throws Exception {
         String error = null;
@@ -66,8 +58,5 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping("/RightBody_Hurt")
-    public String rightBodyHurt() {
-        return "RightBody_Hurt";
-    }
+
 }

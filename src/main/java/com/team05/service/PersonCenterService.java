@@ -13,7 +13,7 @@ import java.util.List;
 public interface PersonCenterService {
     BaseResult<PersonCenter> personCenterResult(PersonCenter personCenter, int pageIndex, int pageSize);
 
-    List<Staff> selectApplicant();
+    BaseResult<Staff> selectApplicant(Staff staff, int pageIndex, int pageSize);
 
-    List<Department> selectDept();
+    BaseResult<Department> selectDept(Department department, int pageIndex, int pageSize);
 }

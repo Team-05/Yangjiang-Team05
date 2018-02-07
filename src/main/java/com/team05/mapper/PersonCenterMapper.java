@@ -13,9 +13,13 @@ import java.util.List;
 public interface PersonCenterMapper {
     List<PersonCenter> selectPersonCenterDetail(PageBean<PersonCenter> pageBean);
 
-    Integer selectPCCount(PersonCenter personCenter);
+    Integer selectPCCount(PageBean<PersonCenter> pageBean);
 
-    List<Staff> selectApplicant();
+    Integer selectApplicantCount(PageBean<Staff> pageBean);
 
-    List<Department> selectDept();
+    List<Staff> selectApplicant(PageBean<Staff> pageBean);
+
+    Integer selectDeptCount(PageBean<Department> pageBean);
+
+    List<Department> selectDept(PageBean<Department> pageBean);
 }

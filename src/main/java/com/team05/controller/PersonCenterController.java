@@ -46,15 +46,15 @@ public class PersonCenterController {
     //Start 添加 查询员工和部门列表 Kinjer 2018.2.6 18：00
     @RequestMapping(value = "/selectApplicant")
     @ResponseBody
-    public List<Staff> selectApplicant(){
-        List<Staff> staffs = personCenterService.selectApplicant();
+    public BaseResult<Staff> selectApplicant(Staff staff, int pageIndex, int pageSize){
+        BaseResult<Staff> staffs = personCenterService.selectApplicant(staff,pageIndex,pageSize);
         return staffs;
     }
 
     @RequestMapping(value = "/selectDept")
     @ResponseBody
-    public List<Department> selectDept(){
-        List<Department> departments = personCenterService.selectDept();
+    public BaseResult<Department> selectDept(Department department, int pageIndex, int pageSize){
+        BaseResult<Department> departments = personCenterService.selectDept(department,pageIndex,pageSize);
         return departments;
     }
     //End 添加 查询员工和部门列表 Kinjer 2018.2.6 18：00

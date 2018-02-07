@@ -1,6 +1,8 @@
 package com.team05.service.impl;
 
 import com.team05.domain.base.BaseResult;
+import com.team05.domain.base.Department;
+import com.team05.domain.base.Staff;
 import com.team05.domain.personcenter.PersonCenter;
 import com.team05.mapper.PersonCenterMapper;
 import com.team05.service.PersonCenterService;
@@ -34,5 +36,15 @@ public class PersonCenterServiceImpl implements PersonCenterService{
         result.setData(personCenters);
 
         return result;
+    }
+
+
+    public List<Staff> selectApplicant() {
+        return personCenterMapper.selectApplicant();
+    }
+
+
+    public List<Department> selectDept() {
+        return personCenterMapper.selectDept();
     }
 }

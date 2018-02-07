@@ -64,7 +64,8 @@
                                                class="mini-buttonedit user_add"
                                                allowInput="false"
                                                onbuttonclick="onClazzButtonEdit"
-                                               name="cid" textName="cname"/>                                    </td>
+                                               name="cid" textName="cname"/>
+                                    </td>
                                 </tr>
                             </table>
                         </div>

@@ -1,5 +1,6 @@
 package com.team05.controller;
 
+import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
@@ -44,17 +45,7 @@ public class MainController {
 
 
 
-    @RequestMapping("/RightBody_Manage")
-    public String manage(){
 
-        return "RightBody_Manage";
-
-    }
-
-    @RequestMapping("/RightBody_Factory")
-    public String factory(){
-        return "RightBody_Factory";
-    }
 
 
 

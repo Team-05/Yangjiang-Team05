@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
     <title>Lambent Login Form a Flat Responsive Widget Template :: w3layouts</title>
@@ -21,7 +21,7 @@
 <body>
 <h1>阳江业务管理平台</h1>
 <div class="main-agileinfo">
-    <form action="loginsubmit" method="post">
+    <form action="loginsubmit" method="post" >
         <input type="text" name="username" class="name" placeholder="username">
         <input type="password" name="password" class="password" placeholder="password">
 

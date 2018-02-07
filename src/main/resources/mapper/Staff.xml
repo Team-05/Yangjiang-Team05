@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.StaffMapper">
+    <resultMap id="applicantMap" type="com.team05.domain.base.Staff">
+        <id property="staffId" column="staff_id"/>
+        <result property="staffName" column="staff_name"/>
+        <result property="staffEmail" column="staff_email"/>
+        <result property="staffUsername" column="staff_username"/>
+        <result property="staffPwd" column="staff_pwd"/>
+        <result property="staffDepId" column="staff_dep_id"/>
+    </resultMap>
+    
+    <select id="selectByName"
+            resultMap="applicantMap"
+            parameterType="com.team05.domain.base.Staff">
+        select * from yj_staff
+        where staff_username=#{StaffName}
+    </select>
+</mapper>
+    

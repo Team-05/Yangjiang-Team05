@@ -24,7 +24,9 @@ public class PersonCenterServiceImpl implements PersonCenterService{
 
         BaseResult<PersonCenter> result = new BaseResult<PersonCenter>();
 
-        int totalCount = personCenterMapper.selectPCCount(personCenter);
+        PageBean<PersonCenter> pg = new PageBean<PersonCenter>(personCenter);
+
+        int totalCount = personCenterMapper.selectPCCount(pg);
 
         PageBean<PersonCenter> pageBean = new PageBean<PersonCenter>(pageIndex+1,pageSize,totalCount);
 
@@ -38,13 +40,43 @@ public class PersonCenterServiceImpl implements PersonCenterService{
         return result;
     }
 
+    public BaseResult<Staff> selectApplicant(Staff staff, int pageIndex, int pageSize) {
+        BaseResult<Staff> result = new BaseResult<Staff>();
 
-    public List<Staff> selectApplicant() {
-        return personCenterMapper.selectApplicant();
+        PageBean<Staff> pg = new PageBean<Staff>(staff);
+
+        int totalCount = personCenterMapper.selectApplicantCount(pg);
+
+        PageBean<Staff> pageBean = new PageBean<Staff>(pageIndex+1,pageSize,totalCount);
+
+        pageBean.setParameter(staff);
+
+        List<Staff> staffs = personCenterMapper.selectApplicant(pageBean);
+
+        result.setTotal(totalCount);
+        result.setData(staffs);
+
+        return result;
+    }
+
+    public BaseResult<Department> selectDept(Department department, int pageIndex, int pageSize) {
+        BaseResult<Department> result = new BaseResult<Department>();
+
+        PageBean<Department> pg = new PageBean<Department>(department);
+
+        int totalCount = personCenterMapper.selectDeptCount(pg);
+
+        PageBean<Department> pageBean = new PageBean<Department>(pageIndex+1,pageSize,totalCount);
+
+        pageBean.setParameter(department);
+
+        List<Department> personCenters = personCenterMapper.selectDept(pageBean);
+
+        result.setTotal(totalCount);
+        result.setData(personCenters);
+
+        return result;
     }
 
 
-    public List<Department> selectDept() {
-        return personCenterMapper.selectDept();
-    }
 }

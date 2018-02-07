@@ -31,25 +31,26 @@
         <result property="chiefId" column="chief_id"/>
     </resultMap>
 
+    <!--个人中心高级查询条件-->
     <sql id="selectPCConditionSql">
         <where>
-            <if test="flowAppStaffName != null and flowAppStaffName != ''">
-                AND FLOW_APP_STAFF_NAME = #{flowAppStaffName}
+            <if test="parameter.flowAppStaffName != null and parameter.flowAppStaffName != ''">
+                AND fa.FLOW_APP_STAFF_NAME = #{parameter.flowAppStaffName}
             </if>
-            <if test="appDeptName != null and appDeptName != ''">
-                AND APP_DEPT_NAME = #{appDeptName}
+            <if test="parameter.appDeptName != null and parameter.appDeptName != ''">
+                AND fa.APP_DEPT_NAME = #{parameter.appDeptName}
             </if>
-            <if test="applyDate != null and applyDate != ''">
-                AND APPLY_DATE LIKE '${applyDate}%'
+            <if test="parameter.applyDate != null and parameter.applyDate != ''">
+                AND fa.APPLY_DATE LIKE '${parameter.applyDate}%'
             </if>
-            <if test="appId != null and appId != ''">
-                AND APP_ID LIKE '%${appId}%'
+            <if test="parameter.appId != null and parameter.appId != ''">
+                AND fa.APP_ID LIKE '%${parameter.appId}%'
             </if>
-            <if test="handleFlag == 0 and status !=null and status!=''">
-                AND STATUS =#{status}
+            <if test="parameter.handleFlag == 0 and parameter.status !=null and parameter.status!=''">
+                AND fa.STATUS =#{parameter.status}
             </if>
-            <if test="handleFlag == 1 and status !=null and status!=''">
-                AND STATUS != #{status}
+            <if test="parameter.handleFlag == 1 and parameter.status !=null and parameter.status!=''">
+                AND fa.STATUS != #{parameter.status}
             </if>
         </where>
     </sql>
@@ -57,7 +58,7 @@
 
     <!--查询个人中心信息条数-->
     <select id="selectPCCount" resultType="java.lang.Integer"
-            parameterType="com.team05.domain.personcenter.PersonCenter">
+            parameterType="com.team05.utils.PageBean">
         SELECT COUNT(fa.APP_ID) FROM pms_flow_apply fa
         <include refid="selectPCConditionSql"/>
     </select>
@@ -66,37 +67,30 @@
     <select id="selectPersonCenterDetail" resultMap="pcMap"
             parameterType="com.team05.utils.PageBean">
         SELECT fa.APP_ID,fa.APP_TYPE,fa.APP_DEPT_NAME,fa.STATUS,fa.FLOW_APP_STAFF_NAME,fa.APPLY_DATE FROM pms_flow_apply fa
-        <where>
-            <if test="parameter.flowAppStaffName != null and parameter.flowAppStaffName != ''">
-                AND FLOW_APP_STAFF_NAME = #{parameter.flowAppStaffName}
-            </if>
-            <if test="parameter.appDeptName != null and parameter.appDeptName != ''">
-                AND APP_DEPT_NAME = #{parameter.appDeptName}
-            </if>
-            <if test="parameter.applyDate != null and parameter.applyDate != ''">
-                AND APPLY_DATE LIKE '${parameter.applyDate}%'
-            </if>
-            <if test="parameter.appId != null and parameter.appId != ''">
-                AND APP_ID LIKE '%${parameter.appId}%'
-            </if>
-            <if test="parameter.handleFlag == 0 and parameter.status !=null and parameter.status!=''">
-                AND STATUS =#{parameter.status}
-            </if>
-            <if test="parameter.handleFlag == 1 and parameter.status !=null and parameter.status!=''">
-                AND STATUS != #{parameter.status}
-            </if>
-        </where>
+        <include refid="selectPCConditionSql"/>
          limit #{startIndex},#{pageSize}
     </select>
 
+
+    <!--Edit by Kinjer for select total count and data of applicant and dept 2018.2.7 12:00-->
+    <!--查询员工条数-->
+    <select id="selectApplicantCount" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT COUNT(staff_id) FROM yj_staff WHERE staff_name LIKE '%${parameter.staffName}%'
+    </select>
     <!--查询员工-->
-    <select id="selectApplicant" resultMap="applicantMap">
-        SELECT staff_id,staff_name FROM yj_staff
+    <select id="selectApplicant" resultMap="applicantMap" parameterType="com.team05.utils.PageBean">
+        SELECT staff_id,staff_name FROM yj_staff WHERE staff_name LIKE '%${parameter.staffName}%' limit #{startIndex},#{pageSize}
     </select>
 
+    <!--查询部门条数-->
+    <select id="selectDeptCount" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT COUNT(dep_id) FROM yj_department WHERE dep_name LIKE '%${parameter.depName}%'
+    </select>
     <!--查询部门-->
-    <select id="selectDept" resultMap="deptMap">
-        SELECT dep_id,dep_name FROM yj_department
+    <select id="selectDept" resultMap="deptMap" parameterType="com.team05.utils.PageBean">
+        SELECT dep_id,dep_name FROM yj_department WHERE dep_name LIKE '%${parameter.depName}%' limit #{startIndex},#{pageSize}
     </select>
 
 

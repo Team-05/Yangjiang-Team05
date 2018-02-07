@@ -52,6 +52,9 @@ public class PageBean<T> {
         // 1.1  开始索引
         this.startIndex = (this.pageNum - 1) * this.pageSize;
 
+        //add by Kinjer 2018.2.7 20:37 排除开始索引是负数
+        this.startIndex = startIndex < 0? 0 : startIndex;
+
         //2 动态条 最多显示10分页，前5后4
         // 2.1 默认值
         this.begin = 1;

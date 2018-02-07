@@ -58,7 +58,7 @@
                         <td>
                             <input id="applicant1" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   allowInput="false"
+                                   <%--allowInput="false"--%>
                                    onbuttonclick="onApplicantButtonEdit"
                                    name="staffId" textName="staffName"/>
                         </td>
@@ -67,7 +67,7 @@
                         <td>
                             <input id="dept1" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   allowInput="false"
+                                   <%--allowInput="false"--%>
                                    onbuttonclick="onDepartmentButtonEdit"
                                    name="depId" textName="depName"/>
                         </td>
@@ -129,7 +129,7 @@
                         <td>
                             <input id="applicant2" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   allowInput="false"
+                                   <%--allowInput="false"--%>
                                    onbuttonclick="onApplicantButtonEdit"
                                    name="staffId" textName="staffName"/>
                         </td>
@@ -138,7 +138,7 @@
                         <td>
                             <input id="dept2" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   allowInput="false"
+                                   <%--allowInput="false"--%>
                                    onbuttonclick="onDepartmentButtonEdit"
                                    name="depId" textName="depName"/>
                         </td>
@@ -201,7 +201,7 @@
         var flowAppStaffName = mini.get("applicant2").getValue();
         var appDeptName = mini.get("dept2").getValue();
 
-        datagrid1.load({handleFlag:1,applyDate:applyDate,appId:appId,flowAppStaffName:flowAppStaffName,appDeptName:appDeptName,status:1});
+        datagrid2.load({handleFlag:1,applyDate:applyDate,appId:appId,flowAppStaffName:flowAppStaffName,appDeptName:appDeptName,status:1});
     }
 
 

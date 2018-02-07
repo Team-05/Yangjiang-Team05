@@ -78,7 +78,7 @@
     }
     function search() {
         var key = mini.get("key").getValue();
-        grid.load({cname: key});
+        grid.load({staffName: key});
     }
     function onKeyEnter(e) {
         search();

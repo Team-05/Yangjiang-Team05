@@ -20,4 +20,7 @@
     { id: "apply", pid: "project", text: "项目成果与计划调整申请", url: "/project/project_apply" },
     { id: "examine", pid: "project", text: "项目承担部门经理审批", url: "/project/project_examine" },
     { id: "manage", pid: "project", text: "科研管理工程师处理", url: "/project/project_manager" },
+    { id: "undertake", pid: "project", text: "承接外部科技项目申报", url: "/research/RightBody_Undertake" },
+
+
 ]

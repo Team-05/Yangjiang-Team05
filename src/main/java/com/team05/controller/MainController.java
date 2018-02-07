@@ -43,6 +43,13 @@ public class MainController {
         return "login";
     }
 
+
+
+
+
+
+
+
     @RequestMapping(value = "/loginsubmit")
     public ModelAndView loginsubmit(HttpServletRequest request) throws Exception {
         String error = null;
@@ -59,4 +66,8 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping("/RightBody_Hurt")
+    public String rightBodyHurt() {
+        return "RightBody_Hurt";
+    }
 }

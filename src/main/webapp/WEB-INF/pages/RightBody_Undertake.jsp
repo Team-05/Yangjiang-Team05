@@ -125,7 +125,9 @@
             </tr>
 
             <tr>
-                <td style="width:120px">预计只是产权 <font color="red">※</font></td>
+                <%--<td style="width:120px">预计只是产权 <font color="red">※</font></td>--%>
+                <%--Kinjer修改 2018.2.8 8:53--%>
+                <td style="width:120px">预计知识产权 <font color="red">※</font></td>
                 <td colspan="3"><input style="width: 100%;overflow-y:auto" class="mini-textarea"/></td>
             </tr>
             <tr>
@@ -182,7 +184,9 @@
             <tr>
                 <td style="width:120px">技术部经理<font color="red">※</font></td>
                 <td>
-                    <input id="tt" style="width: 20%" class="mini-buttonedit-icon user_add"/>
+                    <%--<input id="tt" style="width: 20%" class="mini-buttonedit-icon user_add"/>--%>
+                        <%--Kinjer修改 2018.2.8 8:53--%>
+                    <input id="tt" style="width: 20%" class="mini-buttonedit user_add"/>
                 </td>
             </tr>
 

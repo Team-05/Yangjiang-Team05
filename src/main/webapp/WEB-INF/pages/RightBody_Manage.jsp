@@ -22,16 +22,17 @@
             border: 1px solid gainsboro;
         }
 
-        td {
-            border-collapse: collapse;
-            padding: 3px;
-            height: 20px;
-        }
+        /*td {*/
+        /*border-collapse: collapse;*/
+        /*padding: 3px;*/
+        /*height: 20px;*/
+        /*}*/
 
         .trTitle {
             background-color: #daeeff;
             color: #427dc0;
         }
+
 
         html body .user_add .mini-buttonedit-icon {
             background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
@@ -41,82 +42,102 @@
 </head>
 <body>
 
-        <table cellpadding="1" cellspacing="2" class="table1">
+<%--页面修改 修改人王文 时间2018.2.8--%>
+<%--<table cellpadding="1" cellspacing="2" class="table1">--%>
+<%--<tr>--%>
+<%--<td class="trTitle" colspan="4">当前位置: 综合管理 >> 机组管理</td>--%>
+<%--</tr>--%>
+<%--<tr>--%>
+<%--<td>--%>
+<td class="trTitle" colspan="4">当前位置: 综合管理 >> 机组管理</td>
+<div id="layout1" class="mini-layout" style="width:100%; height: 100%;"
+     borderStyle="border:solid 1px #aaa;">
+    <div title="查询条件" style="background-color: #daeeff" region="north" height="100"
+         showSplitIcon="true">
+        <table>
             <tr>
-                <td class="trTitle" colspan="4">当前位置: 综合管理 >> 厂房管理</td>
-            </tr>
-            <tr>
+                <td style="width:80px">厂房名称</td>
                 <td>
-                    <div id="layout1" class="mini-layout" style="width:100%; height: 100px;"
-                         borderStyle="border:solid 1px #aaa;">
-                        <div title="查询条件" style="background-color: #daeeff" region="north" height="100"
-                             showSplitIcon="true">
-                            <table>
-                                <tr>
-                                    <td style="width:80px">厂房名称</td>
-                                    <td>
-                                        <input id="date1" style="width: 200%"/>
-                                    </td>
-                                    <td style="width: 30%"></td>
-                                    <td style="width:80px">厂房经理</td>
-                                    <td>
-                                        <input id="btnEdit3" style="width: 200%"
-                                               class="mini-buttonedit user_add"
-                                               allowInput="false"
-                                               onbuttonclick="onClazzButtonEdit"
-                                               name="cid" textName="cname"/>                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width:80px">厂房地址</td>
-                                    <td>
-                                        <input id="btnEdit1" style="width: 200%"/>
-                                    </td>
-                                    <td style="width: 30%"></td>
-                                    <td style="width:80px">机组</td>
-                                    <td>
-                                        <input id="btnEdit2" style="width: 200%"
-                                               class="mini-buttonedit user_add"
-                                               allowInput="false"
-                                               onbuttonclick="onStudentButtonEdit"
-                                               name="cid" textName="cname"/>
-                                    </td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                    <input id="date1" style="width: 200%"/>
                 </td>
-            </tr>
-
-            <tr>
+                <td style="width: 30%"></td>
+                <td style="width:80px">厂房经理</td>
                 <td>
-                    <a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>
-                    <a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>
-                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
-                    <div id="listbox2" class="mini-listbox" style="width:100%;"
-                         value="cn" onvaluechanged="onListBoxValueChanged"
-                         url="../text/countrys.txt" showCheckBox="true" multiSelect="true">
-                        <div property="columns">
-                            <div header="机组" field="unitName"></div>
-                            <div header="厂房名称" field="factoryName"></div>
-                            <div header="厂房经理" field="factoryManager"></div>
-                            <div header="厂房地址" field="factoryAddress"></div>
-                            <div header="创建时间" field="createTime"></div>
-                        </div>
-                    </div>
+                    <input id="btnEdit3" style="width: 200%"
+                           class="mini-buttonedit user_add"
+                           allowInput="false"
+                           onbuttonclick="onClazzButtonEdit"
+                           name="cid" textName="cname"/></td>
+            </tr>
+            <tr>
+                <td style="width:80px">厂房地址</td>
+                <td>
+                    <input id="btnEdit1" style="width: 200%"/>
                 </td>
-            </tr>
-            <tr>
+                <td style="width: 30%"></td>
+                <td style="width:80px">机组</td>
                 <td>
-                    <div class="mini-pager" style="width:100%;background:#f0f3f7;border:solid 1px #ccc;    "
-                         totalCount="${session.pageBean.totalPage}" onpagechanged="onPageChanged"
-                         sizeList="[5,10,20,100]"
-                         showPageSize="true" showPageIndex="true" showPageInfo="true"
-                         buttons="#buttons">
-                    </div>
+                    <input id="btnEdit2" style="width: 200%"
+                           class="mini-buttonedit user_add"
+                           allowInput="false"
+                           onbuttonclick="onStudentButtonEdit"
+                           name="cid" textName="cname"/>
                 </td>
             </tr>
         </table>
+    </div>
+    <div title="center" region="center" style="width: 100%; height: 800px">
+        <div style="background-color: #E9EBF0">
+            <a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>
+            <a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>
+            <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+        </div>
+        <div id="datagrid1" class="mini-datagrid"
+             url="/person_center/showPCDetail"
+             multiSelect="true"
+             style="width: 100%;height: 80%"
+             sizeList="[5,10,20,50]"
+             pageSize="10">
+            <div property="columns">
+                <div type="checkcolumn"></div>
+                <div header="机组" field="unitName"></div>
+                <div header="厂房名称" field="factoryName"></div>
+                <div header="厂房经理" field="factoryManager"></div>
+                <div header="厂房地址" field="factoryAddress"></div>
+                <div header="创建时间" field="createTime"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%--<a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>--%>
+<%--<a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>--%>
+<%--<a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>--%>
+<%--<div id="listbox2" class="mini-listbox" style="width:100%;"--%>
+<%--value="cn" onvaluechanged="onListBoxValueChanged"--%>
+<%--url="../text/countrys.txt" showCheckBox="true" multiSelect="true">--%>
+<%--<div property="columns">--%>
+<%--<div header="机组" field="unitName"></div>--%>
+<%--<div header="厂房名称" field="factoryName"></div>--%>
+<%--<div header="厂房经理" field="factoryManager"></div>--%>
+<%--<div header="厂房地址" field="factoryAddress"></div>--%>
+<%--<div header="创建时间" field="createTime"></div>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</td>--%>
+<%--</tr>--%>
+<%--<tr>--%>
+<%--<td>--%>
+<%--<div class="mini-pager" style="width:100%;background:#f0f3f7;border:solid 1px #ccc;    "--%>
+<%--totalCount="${session.pageBean.totalPage}" onpagechanged="onPageChanged"--%>
+<%--sizeList="[5,10,20,100]"--%>
+<%--showPageSize="true" showPageIndex="true" showPageInfo="true"--%>
+<%--buttons="#buttons">--%>
+<%--</div>--%>
+<%--</td>--%>
+<%--</tr>--%>
+<%--</table>--%>
 
 
 <script type="text/javascript">

@@ -35,7 +35,6 @@
             background-image:url(../../img/title.png);
             background-repeat: no-repeat;
             background-size: cover;
-
         }
     </style>
 </head>
@@ -61,7 +60,7 @@
         <span style="position: absolute;left: 72%;top: 9%;z-index: 2"><a href="#" style="font-size: 14px;text-decoration: none;color: #0b93d9">系统帮助</a></span>
 
         <img src="../../img/off.png" style="width: 20px;height: 20px;position: absolute;z-index: 2; left: 80%;top: 9%">
-        <span style="position: absolute;left: 83%;top: 9%;z-index: 2"><a href="#" style="font-size: 14px;text-decoration: none;color: #0b93d9">退出登录</a></span>
+        <span style="position: absolute;left: 83%;top: 9%;z-index: 2"><a href="/logout" style="font-size: 14px;text-decoration: none;color: #0b93d9">退出登录</a></span>
 
         <img src="../../img/circle.jpg" style="width:25px;height: 25px;position: absolute;z-index: 2;left:91%;top: 9%;">
         <span style="position: absolute;left: 94%;top: 9%;z-index: 2"><a href="#" style="font-size: 14px;text-decoration: none;color: #0b93d9">更换主题</a></span>
@@ -76,7 +75,7 @@
                      url="../../text/outlookmenu.txt" onitemselect="onItemSelect"
                      idField="id" parentField="pid"
                      textField="text" borderStyle="border:0"
-                     style="background: #78beff">
+                     style="background: #D6E8FF">
                 </div>
             </div>
             <%--右侧主题--%>

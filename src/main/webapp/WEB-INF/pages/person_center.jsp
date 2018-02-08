@@ -58,7 +58,7 @@
                         <td>
                             <input id="applicant1" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   <%--allowInput="false"--%>
+                            <%--allowInput="false"--%>
                                    onbuttonclick="onApplicantButtonEdit"
                                    name="staffId" textName="staffName"/>
                         </td>
@@ -67,19 +67,17 @@
                         <td>
                             <input id="dept1" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   <%--allowInput="false"--%>
+                            <%--allowInput="false"--%>
                                    onbuttonclick="onDepartmentButtonEdit"
                                    name="depId" textName="depName"/>
                         </td>
-
                     </tr>
-
                 </table>
-
-                <button style="float: right;" onclick="search1()">查询</button>
-
             </div>
             <div title="center" region="center" style="width: 100%; height: 800px">
+                <div>
+                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                </div>
                 <div id="datagrid1" class="mini-datagrid"
                      url="/person_center/showPCDetail"
                      multiSelect="true"
@@ -129,7 +127,7 @@
                         <td>
                             <input id="applicant2" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   <%--allowInput="false"--%>
+                            <%--allowInput="false"--%>
                                    onbuttonclick="onApplicantButtonEdit"
                                    name="staffId" textName="staffName"/>
                         </td>
@@ -138,19 +136,17 @@
                         <td>
                             <input id="dept2" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   <%--allowInput="false"--%>
+                            <%--allowInput="false"--%>
                                    onbuttonclick="onDepartmentButtonEdit"
                                    name="depId" textName="depName"/>
                         </td>
-
                     </tr>
-
                 </table>
-
-                <button style="float: right;" onclick="search2()">查询</button>
-
             </div>
             <div title="center" region="center" style="width: 100%; height: 800px">
+                <div>
+                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                </div>
                 <div id="datagrid2" class="mini-datagrid"
                      url="/person_center/showPCDetail"
                      multiSelect="true"
@@ -181,7 +177,7 @@
 
     mini.parse();
     var datagrid1 = mini.get("datagrid1");
-    datagrid1.load({handleFlag:0,status:1});
+    datagrid1.load({handleFlag: 0, status: 1});
 
     function search1() {
         var applyDate = mini.get("date1").getFormValue("yyyy-MM-dd");
@@ -189,11 +185,18 @@
         var flowAppStaffName = mini.get("applicant1").getValue();
         var appDeptName = mini.get("dept1").getValue();
 
-        datagrid1.load({handleFlag:0,applyDate:applyDate,appId:appId,flowAppStaffName:flowAppStaffName,appDeptName:appDeptName,status:1});
+        datagrid1.load({
+            handleFlag: 0,
+            applyDate: applyDate,
+            appId: appId,
+            flowAppStaffName: flowAppStaffName,
+            appDeptName: appDeptName,
+            status: 1
+        });
     }
 
     var datagrid2 = mini.get("datagrid2");
-    datagrid2.load({handleFlag:1,status:1});
+    datagrid2.load({handleFlag: 1, status: 1});
 
     function search2() {
         var applyDate = mini.get("date2").getFormValue("yyyy-MM-dd");
@@ -201,7 +204,14 @@
         var flowAppStaffName = mini.get("applicant2").getValue();
         var appDeptName = mini.get("dept2").getValue();
 
-        datagrid2.load({handleFlag:1,applyDate:applyDate,appId:appId,flowAppStaffName:flowAppStaffName,appDeptName:appDeptName,status:1});
+        datagrid2.load({
+            handleFlag: 1,
+            applyDate: applyDate,
+            appId: appId,
+            flowAppStaffName: flowAppStaffName,
+            appDeptName: appDeptName,
+            status: 1
+        });
     }
 
 
@@ -254,7 +264,7 @@
 
     datagrid1.on("drawcell", function (e) {
         var record = e.record,
-                column = e.column;
+            column = e.column;
 
 
         //ctrl列，超连接操作按钮
@@ -268,7 +278,7 @@
 
     datagrid2.on("drawcell", function (e) {
         var record = e.record,
-                column = e.column;
+            column = e.column;
 
         //ctrl列，超连接操作按钮
         if (column.name == "ctrl") {

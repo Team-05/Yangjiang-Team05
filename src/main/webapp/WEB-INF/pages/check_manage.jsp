@@ -84,16 +84,13 @@
                             <input id="combo1" class="mini-combobox" style="width:150px;" textField="text" valueField="id"
                                    url="" value="请选择" showNullItem="true" />
                         </td>
-
                     </tr>
-
-
                 </table>
-
-                <button style="float: right;" onclick="search1()">查询</button>
-
             </div>
             <div title="center" region="center" style="width: 100%; height: 800px">
+                <div>
+                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                </div>
                 <div id="datagrid1" class="mini-datagrid"
                      url=""
                      multiSelect="true"

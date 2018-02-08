@@ -33,9 +33,7 @@
 <body>
 
 <div title="综合查询" style="width: 100%">
-
     <div class="trTitle" colspan="4">当前位置: 综合管理 >> 卫星库管理人管理</div>
-
     <div id="layout1" class="mini-layout" style="width:100%; height: 97%;"
          borderStyle="border:solid 1px #aaa;">
         <div title="查询条件" style="background-color: #daeeff;" region="north" height="120"
@@ -56,16 +54,13 @@
                                onbuttonclick="onDepartmentButtonEdit"
                                name="cid" textName="cname"/>
                     </td>
-
                 </tr>
-
-
             </table>
-
-            <button style="float: right;" onclick="search1()">查询</button>
-
         </div>
         <div title="center" region="center" style="width: 100%; height: 800px">
+            <div>
+                <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+            </div>
             <div id="datagrid1" class="mini-datagrid"
                  url=""
                  multiSelect="true"

@@ -49,7 +49,7 @@
         <tr>
             <td style="width:120px">项目名称<font color="red">※</font></td>
             <td>
-                <input id="rr" style="width: 40%;padding-left: 130px"/>
+                <input id="rr" style="width: 40%;"/>
             </td>
         </tr>
         <tr>
@@ -73,7 +73,7 @@
         <tr>
             <td style="width:120px">申报单位<font color="red">※</font></td>
             <td>
-                <input id="aa" style="width: 40%;padding-left: 130px"/>
+                <input id="aa" style="width: 40%;"/>
             </td>
 
             <td style="width:120px">联合申报单位<font color="red">※</font></td>
@@ -154,7 +154,7 @@
             <tr>
                 <td style="width:120px">总预算<font color="red">※</font></td>
                 <td>
-                    <input id="sss" style="width: 40%;padding-left: 130px"/>
+                    <input id="sss" style="width: 40%;"/>
                 </td>
 
                 <td style="width:120px">外部经费<font color="red">※</font></td>
@@ -165,7 +165,7 @@
             <tr>
                 <td style="width:120px">公司经费<font color="red">※</font></td>
                 <td>
-                    <input id="ss" style="width: 40%;padding-left: 130px"/>
+                    <input id="ss" style="width: 40%;"/>
                 </td>
             </tr>
 

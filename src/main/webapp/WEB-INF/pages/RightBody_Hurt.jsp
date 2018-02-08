@@ -46,7 +46,7 @@
             <tr>
                 <td>
                     <div id="layout1" class="mini-layout" style="width:100%; height: 150px;"
-                         borderStyle="border:solid 1px #aaa;">
+                         borderStyle="border:solid 0px #aaa;">
                         <div title="查询条件" style="background-color: #daeeff" region="north" height="150"
                              showSplitIcon="true">
                             <table>

@@ -23,6 +23,7 @@
                 /js/**=anon
                 /css/**=anon
                 /img/**=anon
+                /scripts/**=anon
                 <!--authc需要认证才可以访问-->
                 /loginsubmit=authc
                 <!--退出-->

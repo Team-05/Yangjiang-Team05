@@ -14,7 +14,7 @@ public class ProjectController {
         return "project_apply";
     }
 
-    @RequestMapping("/project_emaxine")
+    @RequestMapping("/project_examine")
     public String examine(){
         return "project_examine";
     }

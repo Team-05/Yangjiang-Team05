@@ -29,13 +29,29 @@
         input{
             height: 20px;
         }
+        .header{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-image: url(../../img/title.png);
+            width: 100%;
+            height: 49px;
+        }
     </style>
 </head>
 <body>
+<%--<div  class="header" showSplitIcon="true" >--%>
+    <%--<span style="float: right"><h3> <shiro:user>当前用户:<shiro:principal/></shiro:user></h3></span>--%>
+    <%--<a class="mini-button" href="/logout" style="float:right">退出</a>--%>
+    <%--<button style="float: right">个人工作台</button>--%>
+<%--</div>--%>
 <div id="layout1" class="mini-layout" style="width:100%;height:100%"  borderStyle="border:solid 1px #aaa;">
     <div title="阳江业务管理平台" region="north" showSplitIcon="true"
          style="background-color: #e8ecf6; background:-moz-linear-gradient(top,#b2d1f5,grey); float: left;width: 100%;height: 15px">
+    <%--<div region="north" showSplitIcon="true"--%>
+         <%--style="background-image: url('../../img/title.png');background-size: auto;width: 100%;"  >--%>
         <span style="float: left"><h3> <shiro:user>当前用户:<shiro:principal/></shiro:user></h3></span>
+        <a type="mini-button" href="/logout">退出</a>
         <button style="float: right">个人工作台</button>
     </div>
     <div title="center" region="center"  >

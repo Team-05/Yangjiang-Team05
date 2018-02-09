@@ -22,6 +22,7 @@
         <result property="staffUsername" column="staff_username"/>
         <result property="staffPwd" column="staff_pwd"/>
         <result property="staffDepId" column="staff_dep_id"/>
+        <result property="roleId" column="role_id"/>
     </resultMap>
 
     <!--部门表映射-->

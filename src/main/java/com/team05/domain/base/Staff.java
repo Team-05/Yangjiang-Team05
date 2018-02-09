@@ -10,6 +10,8 @@ public class Staff {
     private String staffUsername;
     private String staffPwd;
     private int staffDepId;
+    //add by Kinjer 2018.2.8 19:24
+    private int roleId;
 
     public Staff() {
     }
@@ -68,6 +70,15 @@ public class Staff {
 
     public void setStaffDepId(int staffDepId) {
         this.staffDepId = staffDepId;
+    }
+
+    //add by Kinjer 2018.2.8 19:24
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     @Override

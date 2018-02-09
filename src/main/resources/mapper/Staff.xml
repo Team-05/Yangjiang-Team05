@@ -3,20 +3,52 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team05.mapper.StaffMapper">
-    <resultMap id="applicantMap" type="com.team05.domain.base.Staff">
+    <resultMap id="staffMap" type="com.team05.domain.base.Staff">
         <id property="staffId" column="staff_id"/>
         <result property="staffName" column="staff_name"/>
         <result property="staffEmail" column="staff_email"/>
         <result property="staffUsername" column="staff_username"/>
         <result property="staffPwd" column="staff_pwd"/>
         <result property="staffDepId" column="staff_dep_id"/>
+        <!--Kinjer 添加 2018.2.9 19:53-->
+        <result property="roleId" column="role_id"/>
     </resultMap>
     
     <select id="selectByName"
-            resultMap="applicantMap"
+            resultMap="staffMap"
             parameterType="com.team05.domain.base.Staff">
         select * from yj_staff
         where staff_username=#{StaffName}
     </select>
+
+    <!--Start Kinjer 添加 根据不同条件分页查询员工，若有其他条件自行添加 2018.2.9 19:53-->
+    <!--查询员工条数-->
+    <select id="selectStaffCount" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT COUNT(staff_id) FROM yj_staff
+        <where>
+            <if test="parameter.staffName != null and parameter.staffName != ''">
+                AND staff_name LIKE '%${parameter.staffName}%'
+            </if>
+            <if test="parameter.roleId != null and parameter.roleId != ''">
+                AND role_id=#{parameter.roleId}
+            </if>
+        </where>
+    </select>
+    <!--查询员工-->
+    <select id="selectStaffList" resultMap="staffMap" parameterType="com.team05.utils.PageBean">
+        SELECT staff_id,staff_name FROM yj_staff
+        <where>
+            <if test="parameter.staffName != null and parameter.staffName != ''">
+                AND staff_name LIKE '%${parameter.staffName}%'
+            </if>
+            <if test="parameter.roleId != null and parameter.roleId != ''">
+                AND role_id=#{parameter.roleId}
+            </if>
+        </where>
+         limit #{startIndex},#{pageSize}
+    </select>
+    <!--End Kinjer 添加 根据不同条件分页查询员工 2018.2.9 19:53-->
+
 </mapper>
     

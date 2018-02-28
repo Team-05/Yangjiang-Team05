@@ -42,7 +42,7 @@
                 AND fa.APP_DEPT_NAME = #{parameter.appDeptName}
             </if>
             <if test="parameter.applyDate != null and parameter.applyDate != ''">
-                AND fa.APPLY_DATE LIKE '${parameter.applyDate}%'
+                AND fa.APPLY_DATE LIKE '%${parameter.applyDate}%'
             </if>
             <if test="parameter.appId != null and parameter.appId != ''">
                 AND fa.APP_ID LIKE '%${parameter.appId}%'

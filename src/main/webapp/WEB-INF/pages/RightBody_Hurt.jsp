@@ -84,23 +84,25 @@
                 <div style="background-color: #E9EBF0">
                     <a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>
                     <a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>
-                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                    <a class="mini-button" iconCls="icon-search" onclick="searchRayDetail()" plain="true" style="float: right">查询</a>
                 </div>
                 <div id="datagrid1" class="mini-datagrid"
-                     url="/person_center/showPCDetail"
+                     url="/rayUser/showRayUserDetail"
                      multiSelect="true"
                      style="width: 100%;height: 80%"
                      sizeList="[5,10,20,50]"
                      pageSize="10">
                     <div property="columns">
                         <div type="checkcolumn"></div>
-                        <div header="姓名" field="name"></div>
-                        <div header="通行卡号" field="cardNumber"></div>
-                        <div header="单位" field="workAddress"></div>
-                        <div header="RT级别" field="rtLevel"></div>
-                        <div header="RT编号" field="rtNumber"></div>
-                        <div header="开始日期" field="startTime"></div>
-                        <div header="结束日期" field="endTime"></div>
+                        <div id="rayStaffId" field="rayStaffId" visible="false"></div>
+                        <div header="姓名" field="staffName" width="120" headerAlign="center"></div>
+                        <div header="通行卡号" field="passcardNo" width="120" headerAlign="center"></div>
+                        <div header="单位" field="orgName" width="120" headerAlign="center"></div>
+                        <div header="员工号" field="staffNo" width="120" headerAlign="center"></div>
+                        <div header="RT级别" field="rtRank" width="120" headerAlign="center"></div>
+                        <div header="RT编号" field="rtNo" width="120" headerAlign="center"></div>
+                        <div header="开始日期" field="effectBegDate" dateFormat="yyyy年MM月dd日" width="120" headerAlign="center"></div>
+                        <div header="结束日期" field="effectEndDate" dateFormat="yyyy年MM月dd日" width="120" headerAlign="center"></div>
                     </div>
                 </div>
             </div>
@@ -142,6 +144,27 @@
 
 <script type="text/javascript">
     mini.parse();
+
+    var datagrid1 = mini.get("datagrid1");
+
+    datagrid1.load();
+//    datagrid1.hideColumn("rayStaffId");
+
+    function searchRayDetail() {
+        var staffName = $("#name").val();
+        var passcardNo = $("#cardNumber").val();
+        var orgName = $("#workAddress").val();
+        var staffNo = $("#staffNumber").val();
+        var rtNo = $("#keyWord").val();
+
+        datagrid1.load({
+            staffName: staffName,
+            passcardNo: passcardNo,
+            orgName: orgName,
+            staffNo: staffNo,
+            rtNo: rtNo
+        });
+    }
 
     function onTabPositionChange(value) {
         var tabs = mini.get("tabs1");
@@ -200,6 +223,31 @@
         })
     }
 
+    function removeRow() {
+
+        var rows = datagrid1.getSelecteds();
+        if (rows.length > 0) {
+            if (confirm("确定删除选中记录？")) {
+                var ids = [];
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    var r = rows[i];
+                    ids.push(r.rayStaffId);
+                }
+                var id = ids.join(',');
+                grid.loading("操作中，请稍后......");
+                $.ajax({
+                    url: "" +id,
+                    success: function (text) {
+                        datagrid1.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            }
+        } else {
+            alert("请选中一条记录");
+        }
+    }
 
 </script>
 </body>

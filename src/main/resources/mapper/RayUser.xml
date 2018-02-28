@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.RayUserMapper">
+    <!--射线探伤人员表映射-->
+    <resultMap id="rayUserMap" type="com.team05.domain.RayUser">
+        <id property="rayStaffId" column="RAY_STAFF_ID"/>
+        <result property="staffNo" column="STAFF_NO"/>
+        <result property="staffName" column="STAFF_NAME"/>
+        <result property="passcardNo" column="PASSCARD_NO"/>
+        <result property="orgId" column="ORG_ID"/>
+        <result property="orgName" column="ORG_NAME"/>
+        <result property="rtRank" column="RT_RANK"/>
+        <result property="rtNo" column="RT_NO"/>
+        <result property="effectBegDate" column="EFFECT_BEG_DATE"/>
+        <result property="effectEndDate" column="EFFECT_END_DATE"/>
+        <result property="effectFlag" column="EFFECT_FLAG"/>
+        <result property="createStaffNo" column="CREATE_STAFF_NO"/>
+        <result property="createStaffName" column="CREATE_STAFF_NAME"/>
+        <result property="createDate" column="CREATE_DATE"/>
+    </resultMap>
+
+    <!--个人中心高级查询条件-->
+    <sql id="selectRayUserConSql">
+        <where>
+            <if test="parameter.staffName != null and parameter.staffName != ''">
+                AND STAFF_NAME LIKE '%${parameter.staffName}%'
+            </if>
+            <if test="parameter.passcardNo != null and parameter.passcardNo != ''">
+                AND PASSCARD_NO LIKE '%${parameter.passcardNo}%'
+            </if>
+            <if test="parameter.orgName != null and parameter.orgName != ''">
+                AND ORG_NAME LIKE '%${parameter.orgName}%'
+            </if>
+            <if test="parameter.staffNo != null and parameter.staffNo != ''">
+                AND STAFF_NO LIKE '%${parameter.staffNo}%'
+            </if>
+            <if test="parameter.rtNo != null and parameter.rtNo != ''">
+                AND RT_NO LIKE '%${parameter.rtNo}%'
+            </if>
+        </where>
+    </sql>
+
+
+    <!--查询射线探伤人员信息条数-->
+    <select id="selectRayUserCount" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT COUNT(RAY_STAFF_ID) FROM pms_ray_user
+        <include refid="selectRayUserConSql"/>
+    </select>
+
+    <!--查询射线探伤人员信息-->
+    <select id="selectRayUserDetail" resultMap="rayUserMap"
+            parameterType="com.team05.utils.PageBean">
+        SELECT RAY_STAFF_ID,STAFF_NAME,PASSCARD_NO,ORG_NAME,STAFF_NO,RT_RANK,RT_NO,EFFECT_BEG_DATE,EFFECT_END_DATE FROM pms_ray_user
+        <include refid="selectRayUserConSql"/>
+        limit #{startIndex},#{pageSize}
+    </select>
+</mapper>

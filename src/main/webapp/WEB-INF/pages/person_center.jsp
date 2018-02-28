@@ -76,7 +76,9 @@
             </div>
             <div title="center" region="center" style="width: 100%; height: 800px">
                 <div>
-                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                    <%--<a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>--%>
+                    <%--修改模糊查询方法名 Kinjer 2018.2.27 17:12--%>
+                    <a class="mini-button" iconCls="icon-search" onclick="search1()" plain="true" style="float: right">查询</a>
                 </div>
                 <div id="datagrid1" class="mini-datagrid"
                      url="/person_center/showPCDetail"
@@ -145,7 +147,9 @@
             </div>
             <div title="center" region="center" style="width: 100%; height: 800px">
                 <div>
-                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                    <%--<a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>--%>
+                        <%--修改模糊查询方法名 Kinjer 2018.2.27 17:12--%>
+                    <a class="mini-button" iconCls="icon-search" onclick="search2()" plain="true" style="float: right">查询</a>
                 </div>
                 <div id="datagrid2" class="mini-datagrid"
                      url="/person_center/showPCDetail"

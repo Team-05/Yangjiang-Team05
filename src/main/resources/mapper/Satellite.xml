@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.SatelliteMapper">
+    <sql id="satelliteColumns">
+      bims_store_id,
+      bims_store_name,
+      manage_staff_no,
+      manage_staff_name,
+      effect_flag,
+      create_staff_no,
+      create_staff_name,
+      create_date
+    </sql>
+
+    <resultMap id="satelliteMap" type="com.team05.domain.Satellite">
+        <id property="bimsStoreId" column="bims_store_id"/>
+        <result property="bimsStoreName" column="bims_store_name"/>
+        <result property="manageStaffNo" column="manage_staff_no"/>
+        <result property="manageStaffName" column="manage_staff_name"/>
+        <result property="effectFlag" column="effect_flag"/>
+        <result property="createStaffNo" column="create_staff_no"/>
+        <result property="createStaffName" column="create_staff_name"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+    <!--查询卫星库条数-->
+    <select id="selectSatellitePage" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        select COUNT(bims_store_id) from pms_bims_store
+        <where>
+            <if test="parameter.bimsStoreName != null and parameter.bimsStoreName != ''">
+                AND bims_store_name LIKE '%${parameter.bimsStoreName}%'
+            </if>
+            <if test="parameter.manageStaffName !=null and parameter.manageStaffName != ''">
+                AND manage_staff_name=#{parameter.manageStaffName}
+            </if>
+        </where>
+    </select>
+    <!--查询全部卫星库-->
+    <select id="selectAllSatellite" resultMap="satelliteMap"
+            parameterType="com.team05.utils.PageBean">
+        select
+        <include refid="satelliteColumns"/>
+        from pms_bims_store
+        <where>
+            <if test="parameter.bimsStoreName != null and parameter.bimsStoreName != ''">
+                AND bims_store_name LIKE '%${parameter.bimsStoreName}%'
+            </if>
+            <if test="parameter.manageStaffName !=null and parameter.manageStaffName != ''">
+                AND manage_staff_name=#{parameter.manageStaffName}
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <!--查询管理员条数-->
+    <select id="selectManagePage" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        select COUNT(DISTINCT manage_staff_no) from pms_bims_store
+        <where>
+            <if test="parameter.manageStaffName !=null and parameter.manageStaffName != ''">
+                AND manage_staff_name LIKE '%${parameter.manageStaffName}%'
+            </if>
+        </where>
+    </select>
+    <!--查询卫星库管理员-->
+    <select id="selectManageStaff" resultMap="satelliteMap"
+            parameterType="com.team05.utils.PageBean">
+       select  manage_staff_no,manage_staff_name from pms_bims_store
+       <where>
+           <if test="parameter.manageStaffName !=null and parameter.manageStaffName != ''">
+               AND manage_staff_name LIKE '%${parameter.manageStaffName}%'
+           </if>
+       </where>
+        group BY manage_staff_no
+        limit #{startIndex},#{pageSize}
+    </select>
+
+</mapper>

@@ -41,38 +41,38 @@
             <table>
 
                 <tr>
-                    <td style="width:80px">申请人</td>
+                    <td style="width:80px">卫星库名称</td>
                     <td>
                         <input type="text" id="text1"/>
                     </td>
                     <td style="width: 30%"></td>
                     <td style="width:80px">管理人员</td>
                     <td>
-                        <input id="btnEdit2" style="width: 200%"
+                        <input id="manageStaff" style="width: 200%"
                                class="mini-buttonedit user_add"
                                allowInput="false"
-                               onbuttonclick="onDepartmentButtonEdit"
-                               name="cid" textName="cname"/>
+                               onbuttonclick="onSatelliteButtonEdit"
+                               name="manageStaffNo" textName="manageStaffName"/>
                     </td>
                 </tr>
             </table>
         </div>
         <div title="center" region="center" style="width: 100%; height: 800px">
             <div>
-                <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                <a class="mini-button" iconCls="icon-search" onclick="search1()" plain="true" style="float: right">查询</a>
             </div>
             <div id="datagrid1" class="mini-datagrid"
-                 url=""
+                 url="/manage/selectAllSatellite"
                  multiSelect="true"
                  style="width: 100%;height: 80%"
                  sizeList="[5,10,20,50]"
                  pageSize="10">
                 <div property="columns">
                     <div type="checkcolumn"></div>
-                    <div field="appId" width="120" headerAlign="center">卫星库</div>
-                    <div field="appType" width="120" headerAlign="center">管理人员</div>
-                    <div field="applyDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">创建日期</div>
-                    <div field="ctrl" width="120" headerAlign="center">是否有效</div>
+                    <div field="bimsStoreName" width="120" headerAlign="center">卫星库</div>
+                    <div field="manageStaffName" width="120" headerAlign="center">管理人员</div>
+                    <div field="createDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">创建日期</div>
+                    <div field="effectFlag" width="120" headerAlign="center">是否有效</div>
                 </div>
             </div>
         </div>
@@ -87,25 +87,18 @@
     datagrid1.load();
 
     function search1() {
-        var key = mini.get("key1").getValue();
-        datagrid1.load({sname: key});
+        var key = $("#text1").val();
+        var manageStaff=mini.get("manageStaff").getValue();
+        datagrid1.load({bimsStoreName:key,
+                        manageStaffName:manageStaff });
     }
 
-    var datagrid2 = mini.get("datagrid2");
-    datagrid2.load();
-
-    function search2() {
-        var key = mini.get("key2").getValue();
-        datagrid1.load({sname: key});
-    }
-
-
-    function onDepartmentButtonEdit(e) {
+    function onSatelliteButtonEdit(e) {
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
-            title: "选择所属部门",
+            url: "/manage/manageSatellite",
+            title: "选择管理员",
             width: 650,
             height: 380,
             ondestroy: function (action) {
@@ -115,31 +108,8 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.cid);
-                        btnEdit.setText(data.cname);
-                    }
-                }
-
-            }
-        })
-    }
-    function onApplicantButtonEdit(e) {
-        //加载mini组件 后面的get方法才好用
-        var btnEdit = this;
-        mini.open({
-            url: "",
-            title: "选择申请人",
-            width: 650,
-            height: 380,
-            ondestroy: function (action) {
-                //if (action == "close") return false;
-                if (action == "ok") {
-                    var iframe = this.getIFrameEl();
-                    var data = iframe.contentWindow.GetData();
-                    data = mini.clone(data);    //必须
-                    if (data) {
-                        btnEdit.setValue(data.sid);
-                        btnEdit.setText(data.sname);
+                        btnEdit.setValue(data.manageStaffName);
+                        btnEdit.setText(data.manageStaffName);
                     }
                 }
 

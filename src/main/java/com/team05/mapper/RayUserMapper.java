@@ -12,4 +12,6 @@ public interface RayUserMapper {
     Integer selectRayUserCount(PageBean<RayUser> pageBean);
 
     List<RayUser> selectRayUserDetail(PageBean<RayUser> pageBean);
+
+    Integer deleteRayUser(List<String> rayStaffIdList);
 }

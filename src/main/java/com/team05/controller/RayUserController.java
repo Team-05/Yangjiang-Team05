@@ -24,4 +24,14 @@ public class RayUserController {
         BaseResult<RayUser> result = rayUserService.rayUserResult(rayUser,pageIndex,pageSize);
         return result;
     }
+
+    @RequestMapping(value = "/deleteRayUser")
+    public void deleteRayUser(String rayStaffId){
+        rayUserService.deleteRayUser(rayStaffId);
+    }
+
+    @RequestMapping(value = "/addRayUserGw")
+    public String addRayUserGw(){
+        return "add_rayuser_gw";
+    }
 }

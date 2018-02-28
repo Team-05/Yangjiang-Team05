@@ -8,6 +8,7 @@ import com.team05.utils.PageBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -36,5 +37,11 @@ public class RayUserServiceImpl implements RayUserService{
         result.setData(personCenters);
 
         return result;
+    }
+
+    public int deleteRayUser(String rayStaffId) {
+        List<String> rayStaffIdList = Arrays.asList(rayStaffId.split(","));
+        int count = rayUserMapper.deleteRayUser(rayStaffIdList);
+        return count;
     }
 }

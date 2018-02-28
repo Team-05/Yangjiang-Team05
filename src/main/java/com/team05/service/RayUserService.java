@@ -8,4 +8,6 @@ import com.team05.domain.base.BaseResult;
  */
 public interface RayUserService {
     BaseResult<RayUser> rayUserResult(RayUser rayUser, int pageIndex, int pageSize);
+
+    int deleteRayUser(String rayStaffId);
 }

@@ -21,7 +21,7 @@
         <result property="createDate" column="CREATE_DATE"/>
     </resultMap>
 
-    <!--个人中心高级查询条件-->
+    <!--射线探伤人员查询条件-->
     <sql id="selectRayUserConSql">
         <where>
             <if test="parameter.staffName != null and parameter.staffName != ''">
@@ -57,4 +57,13 @@
         <include refid="selectRayUserConSql"/>
         limit #{startIndex},#{pageSize}
     </select>
+
+    <!--删除选中信息-->
+    <delete id="deleteRayUser" parameterType="java.util.List">
+        DELETE FROM pms_ray_user WHERE RAY_STAFF_ID IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
 </mapper>

@@ -234,19 +234,39 @@
                     ids.push(r.rayStaffId);
                 }
                 var id = ids.join(',');
-                grid.loading("操作中，请稍后......");
+                datagrid1.loading("操作中，请稍后......");
                 $.ajax({
-                    url: "" +id,
+                    url: "/rayUser/deleteRayUser?rayStaffId=" +id,
                     success: function (text) {
+                        datagrid1.unmask();
                         datagrid1.reload();
                     },
                     error: function () {
+                        datagrid1.unmask();
+                        datagrid1.reload();
                     }
                 });
             }
         } else {
             alert("请选中一条记录");
         }
+    }
+
+    function addRow() {
+
+        mini.open({
+            url: "/rayUser/addRayUserGw",
+            title: "新增射线探伤人员", width: 630, height: 500,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = { action: "new"};
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy: function (action) {
+
+                grid.reload();
+            }
+        });
     }
 
 </script>

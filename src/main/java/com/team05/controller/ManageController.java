@@ -1,7 +1,15 @@
 package com.team05.controller;
 
+import com.team05.domain.Satellite;
+import com.team05.domain.base.BaseResult;
+import com.team05.domain.mac.Mac;
+import com.team05.service.MacService;
+import com.team05.service.SatelliteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
 
 /**
  * Created by dllo on 18/2/6.
@@ -67,7 +75,7 @@ public class ManageController {
     //查询全部卫星库
     @RequestMapping(value="/selectAllSatellite")
     @ResponseBody
-    public BaseResult<Satellite> selectAllSatellite(Satellite satellite,int pageIndex,int pageSize){
+    public BaseResult<Satellite> selectAllSatellite(Satellite satellite, int pageIndex, int pageSize){
         BaseResult<Satellite> satellites = satelliteService.selectAllSatellite(satellite,pageIndex,pageSize);
         return satellites;
     }

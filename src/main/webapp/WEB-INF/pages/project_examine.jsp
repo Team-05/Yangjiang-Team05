@@ -29,7 +29,6 @@
         /*height: 20px;*/
         /*}*/
 
-
         html body .user_add .mini-buttonedit-icon {
             background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
         }
@@ -38,7 +37,7 @@
 </head>
 <body>
 
-<div >
+<div>
     <div id="div1" class="mini-panel"
          margin-top="0px" title="申请信息"
          style="width:100%;height: 200px;background-color:#daeeff "
@@ -90,21 +89,65 @@
 
     <div id="div2" class="mini-panel"
          margin-top="0px" title="审批意见"
-         style="width:100%;height: 100px"
+         style="width:100%;height: 155px"
          showCollapseButton="true"
          allowResize="false" collapseOnTitleClick="true">
         <table style="width: 100%;height: 100%">
             <tr>
                 <td style="width:120px">审批意见<font color="red">※</font></td>
-                <td ><input style="width: 100%;overflow-y:auto" class="mini-textarea"/></td>
+
+                <td>
+                    <div id="listbox1" class="mini-listbox" onvaluechanged="remove1()" style="width:350px;height:120px;"
+                         multiSelect="false">
+                    </div>
+                </td>
+
                 <td style="width:120px">常用词条<font color="red">※</font></td>
-                <td ><input style="width: 100%;overflow-y:auto" class="mini-textarea"/></td>
+                <td>
+                    <div id="listbox2" class="mini-listbox" multiSelect="false" onvaluechanged="add()"
+                         style="width:350px;height:120px;"
+                         textField="text"
+                         url="../text/listboxText.txt">
+
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
 </div>
-    <input type="button" value="不通过" style="float: right">
-    <input type="button" value="通过" style="float: right">
+<table>
+    <tr>
+        <td colspan="4" style="width:100%">
+            <a style="float: right; margin-right: 50px" onclick="agree()" class="mini-button" iconCls="icon-ok">同意</a>
+            <a style="float: right; margin-right: 50px" onclick="disagree()" class="mini-button" iconCls="icon-no">不同意</a>
+        </td>
+    </tr>
+</table>
+
+
+<script>
+
+    mini.parse();
+    var listbox1 = mini.get("listbox1");
+    var listbox2 = mini.get("listbox2");
+
+    function add() {
+
+        var items = listbox2.getSelecteds();
+        console.log(items);
+        listbox2.removeItems(items);
+        listbox1.addItems(items);
+        listbox2.readOnly = true;
+    }
+    function remove1() {
+        var items = listbox1.getSelecteds();
+        console.log(items);
+        listbox1.removeItems(items);
+        listbox2.addItems(items);
+        listbox2.readOnly = false;
+
+    }
+</script>
 </body>
 </html>
 

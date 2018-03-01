@@ -58,16 +58,15 @@
             <tr style="text-align: center">
                 <td style="width:80px">机组名称</td>
                 <td>
-                    <input id="date1" style="width: 200%"/>
+                    <input id="macName" style="width: 200%"/>
                 </td>
                 <td style="width: 30%"></td>
                 <td style="width:80px">机组管理人</td>
                 <td>
-                    <input id="btnEdit3" style="width: 200%"
+                    <input id="macManageStaffName" style="width: 200%"
                            class="mini-buttonedit user_add"
-                           allowInput="false"
-                           onbuttonclick="onClazzButtonEdit"
-                           name="cid" textName="cname"/>
+                           onbuttonclick="onManageButtonEdit"
+                           name="macManageStaffNo" textName="macManageStaffName"/>
                 </td>
             </tr>
         </table>
@@ -79,49 +78,26 @@
             <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
         </div>
         <div id="datagrid1" class="mini-datagrid"
-             url="/person_center/showPCDetail"
+             url="/manage/selectMac"
              multiSelect="true"
              style="width: 100%;height: 80%"
              sizeList="[5,10,20,50]"
              pageSize="10">
             <div property="columns">
                 <div type="checkcolumn"></div>
-                <div header="机组名称" field="unitName"></div>
-                <div header="机组管理人" field="factoryPerson"></div>
-                <div header="创建时间" field="createTime"></div>
+                <div header="机组名称" field="macName"></div>
+                <div header="机组管理人" field="macManageStaffName"></div>
+                <div header="创建时间" field="createDate" dateFormat="yyyy/MM/dd HH:mm:ss"></div>
             </div>
         </div>
     </div>
 </div>
-<%--<a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>--%>
-<%--<a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>--%>
-<%--<a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>--%>
-<%--<div id="listbox2" class="mini-listbox" style="width:100%;"--%>
-<%--value="cn" onvaluechanged="onListBoxValueChanged"--%>
-<%--url="../text/unit.txt" showCheckBox="true" multiSelect="true">--%>
-<%--<div property="columns">--%>
-<%--<div header="机组名称" field="unitName"></div>--%>
-<%--<div header="机组管理人" field="factoryPerson"></div>--%>
-<%--<div header="创建时间" field="createTime"></div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</td>--%>
-<%--</tr>--%>
-<%--<tr>--%>
-<%--<td>--%>
-<%--<div class="mini-pager" style="width:100%;background:#f0f3f7;border:solid 1px #ccc;    "--%>
-<%--totalCount="${session.pageBean.totalPage}" onpagechanged="onPageChanged"--%>
-<%--sizeList="[5,10,20,100]"--%>
-<%--showPageSize="true" showPageIndex="true" showPageInfo="true"--%>
-<%--buttons="#buttons">--%>
-<%--</div>--%>
-<%--</td>--%>
-<%--</tr>--%>
-<%--</table>--%>
-
 
 <script type="text/javascript">
     mini.parse();
+
+    var datagrid1 = mini.get("datagrid1");
+    datagrid1.load();
 
     function onTabPositionChange(value) {
         var tabs = mini.get("tabs1");
@@ -133,23 +109,23 @@
         tabs.setTabAlign(value);
     }
 
-    function onClazzButtonEdit(e) {
+    function onManageButtonEdit(e) {
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
+            url: "/manage/MacApplicantWindow",
             title: "选择机组管理员",
             width: 650,
             height: 380,
             ondestroy: function (action) {
-                //if (action == "close") return false;
+
                 if (action == "ok") {
                     var iframe = this.getIFrameEl();
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.cid);
-                        btnEdit.setText(data.cname);
+                        btnEdit.setValue(data.macManageStaffName);
+                        btnEdit.setText(data.macManageStaffName);
                     }
                 }
 
@@ -157,6 +133,19 @@
         })
     }
 
+    function search() {
+//        var name = mini.get("name").getValue();
+        var macName = $("#macName").val();
+        var macManageStaffName = mini.get("macManageStaffName").getValue();
+        datagrid1.setUrl("/manage/selectMac");
+
+        datagrid1.load({
+            macName:macName,
+            macManageStaffName:macManageStaffName
+
+        });
+
+    }
 
 </script>
 </body>

@@ -1,16 +1,7 @@
 package com.team05.controller;
 
-import com.team05.domain.Satellite;
-import com.team05.domain.base.BaseResult;
-import com.team05.domain.base.Staff;
-import com.team05.service.SatelliteService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Created by dllo on 18/2/6.
@@ -22,15 +13,15 @@ public class ManageController {
     @Resource
     private SatelliteService satelliteService;
 
+    @Resource
+    private MacService macService;
+
     @RequestMapping("/RightBody_Manage")
     public String manage(){
         return "RightBody_Manage";
     }
 
-    @RequestMapping("/RightBody_Factory")
-    public String factory(){
-        return "RightBody_Factory";
-    }
+
 
     @RequestMapping("/check_manage")
     public String check(){
@@ -46,6 +37,27 @@ public class ManageController {
     public String rightBodyHurt() {
         return "RightBody_Hurt";
     }
+
+    @RequestMapping(value = "/RightBody_Factory")
+    public String rightBodyFactory(){
+        return "RightBody_Factory";
+    }
+
+
+    @RequestMapping(value = "/MacApplicantWindow")
+    public String macApplicantWindow(){
+        return "MacApplicantWindow";
+    }
+
+
+
+    @RequestMapping(value = "/selectMac")
+    @ResponseBody
+    public BaseResult<Mac> selectAll(Mac mac, int pageIndex, int pageSize){
+         BaseResult<Mac> macs = macService.selectAllMac(mac,pageIndex,pageSize);
+        return macs;
+    }
+
 
     @RequestMapping("/manageSatellite")
     public String manageSatellite(){

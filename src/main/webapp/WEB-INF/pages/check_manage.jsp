@@ -55,18 +55,18 @@
                     <tr>
                         <td style="width:80px">申请人</td>
                         <td>
-                            <input id="btnEdit1" style="width: 200%"
+                            <input id="applicant2" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   allowInput="false"
+                                   allowInput="true"
                                    onbuttonclick="onApplicantButtonEdit"
                                    name="sid" textName="sname"/>
                         </td>
                         <td style="width: 30%"></td>
                         <td style="width:80px">所属部门</td>
                         <td>
-                            <input id="btnEdit2" style="width: 200%"
+                            <input id="dept2" style="width: 200%"
                                    class="mini-buttonedit user_add"
-                                   allowInput="false"
+                                   allowInput="true"
                                    onbuttonclick="onDepartmentButtonEdit"
                                    name="cid" textName="cname"/>
                         </td>
@@ -76,23 +76,23 @@
                         <td style="width:120px">流程类型</td>
                         <td>
                             <input id="combo" class="mini-combobox" style="width:150px;" textField="text" valueField="id"
-                                   url="" value="请选择" showNullItem="true" />
+                                   url="/manage/selectAppType" placeholder="请选择" showNullItem="false" />
                         </td>
                         <td style="width: 30%"></td>
                         <td style="width:120px">是否可以打印</td>
                         <td>
                             <input id="combo1" class="mini-combobox" style="width:150px;" textField="text" valueField="id"
-                                   url="" value="请选择" showNullItem="true" />
+                                   url="/manage/selectEffectFlag" placeholder="请选择" showNullItem="false" />
                         </td>
                     </tr>
                 </table>
             </div>
             <div title="center" region="center" style="width: 100%; height: 800px">
                 <div>
-                    <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
+                    <a class="mini-button" iconCls="icon-search" onclick="search1()" plain="true" style="float: right">查询</a>
                 </div>
                 <div id="datagrid1" class="mini-datagrid"
-                     url=""
+                     url="/manage/selectAllCheck"
                      multiSelect="true"
                      style="width: 100%;height: 80%"
                      sizeList="[5,10,20,50]"
@@ -104,9 +104,8 @@
                         <div field="appDeptName" width="120" headerAlign="center">所属部门</div>
                         <div field="status" width="120" headerAlign="center">当前环节</div>
                         <div field="flowAppStaffName" width="120" headerAlign="center">提报人</div>
-                        <div field="applyDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">提报时间
-                        </div>
-                        <div field="ctrl" width="120" headerAlign="center">操作</div>
+                        <div field="effectFlag" width="120" headerAlign="center">是否可以打印</div>
+                        <div name="ctrl" field="ctrl" width="120" headerAlign="center">操作</div>
                     </div>
                 </div>
             </div>
@@ -121,25 +120,26 @@
     datagrid1.load();
 
     function search1() {
-        var key = mini.get("key1").getValue();
-        datagrid1.load({sname: key});
+        var applyDate = mini.get("date1").getFormValue("yyyy-MM-dd");
+        var appId =$("#text").val();
+        var flowAppStaffName = mini.get("applicant2").getValue();
+        var appDeptName = mini.get("dept2").getValue();
+        var appType=mini.get("combo").getValue();
+        var effectFlag=mini.get("combo1").getValue();
+        datagrid1.load({applyDate: applyDate,
+                        appId:appId,
+                        flowAppStaffName:flowAppStaffName,
+                        appDeptName:appDeptName,
+                        appType:appType,
+                        effectFlag:effectFlag});
     }
-
-    var datagrid2 = mini.get("datagrid2");
-    datagrid2.load();
-
-    function search2() {
-        var key = mini.get("key2").getValue();
-        datagrid1.load({sname: key});
-    }
-
 
     function onDepartmentButtonEdit(e) {
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
-            title: "选择所属部门",
+            url: "/person_center/deptGridWindow",
+            title: "选择部门",
             width: 650,
             height: 380,
             ondestroy: function (action) {
@@ -149,8 +149,8 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.cid);
-                        btnEdit.setText(data.cname);
+                        btnEdit.setValue(data.depName);
+                        btnEdit.setText(data.depName);
                     }
                 }
 
@@ -161,7 +161,7 @@
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
+            url: "/person_center/applicantGridWindow",
             title: "选择申请人",
             width: 650,
             height: 380,
@@ -172,14 +172,37 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.sid);
-                        btnEdit.setText(data.sname);
+                        btnEdit.setValue(data.staffName);
+                        btnEdit.setText(data.staffName);
                     }
                 }
 
             }
         })
     }
+    datagrid1.on("drawcell", function (e) {
+        var record = e.record,
+            column = e.column;
+
+        var htmltext = "<input type='button' value='✏️办理' onclick=''/>";
+//        var temp=datagrid.getColumn("effectFlag").getValue();
+
+            if (true) {
+                htmltext += "<input type='button' value='🖨打印' onclick=''/>";
+            }
+
+
+        //ctrl列，超连接操作按钮
+        if (column.name == "ctrl") {
+            e.cellStyle = "text-align:center";
+            e.cellHtml = htmltext;
+
+
+
+        }
+    });
+
+
 
 
 </script>

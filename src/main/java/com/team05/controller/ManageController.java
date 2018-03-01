@@ -1,15 +1,21 @@
 package com.team05.controller;
 
+import com.team05.domain.CheckManage;
 import com.team05.domain.Satellite;
+import com.team05.domain.SelectText;
 import com.team05.domain.base.BaseResult;
 import com.team05.domain.base.Staff;
+import com.team05.service.CheckManageService;
 import com.team05.service.SatelliteService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.xml.soap.Text;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +27,8 @@ public class ManageController {
 
     @Resource
     private SatelliteService satelliteService;
+    @Resource
+    private CheckManageService checkManageService;
 
     @RequestMapping("/RightBody_Manage")
     public String manage(){
@@ -65,5 +73,36 @@ public class ManageController {
     public BaseResult<Satellite> selectManageStaff(Satellite satellite,int pageIndex,int pageSize){
         BaseResult<Satellite> satellites=satelliteService.selectManageStaff(satellite,pageIndex,pageSize);
         return satellites;
+    }
+    //综合查询
+    @RequestMapping(value="selectAllCheck")
+    @ResponseBody
+    public BaseResult<CheckManage> selectAllCheck(CheckManage checkManage,int pageIndex,int pageSize){
+        BaseResult<CheckManage> checkManages=checkManageService.selectAllCheck(checkManage,pageIndex,pageSize);
+        return checkManages;
+    }
+    //查询流程类型
+    @RequestMapping(value="/selectAppType")
+    @ResponseBody
+    public List<SelectText> selectAppType(){
+        List<String> checkManages=checkManageService.selectAppType();
+        List<SelectText> texts=new ArrayList<SelectText>();
+        for (String checkManage : checkManages) {
+            SelectText selectText = new SelectText(checkManage);
+            texts.add(selectText);
+        }
+        return texts;
+    }
+    //查询是否打印
+    @RequestMapping(value="/selectEffectFlag")
+    @ResponseBody
+    public List<SelectText> selectEffectFlag(){
+        List<String> flag=checkManageService.selectEffectType();
+        List<SelectText> texts=new ArrayList<SelectText>();
+        for (String s : flag) {
+            SelectText text=new SelectText(s);
+            texts.add(text);
+        }
+        return texts;
     }
 }

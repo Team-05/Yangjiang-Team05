@@ -15,5 +15,10 @@ public class ResearchController {
         return "RightBody_Undertake";
     }
 
+    @RequestMapping(value = "/RightBody_UndertakeApproval")
+    public String approval(){
+        return "RightBody_UndertakeApproval";
+    }
+
 
 }

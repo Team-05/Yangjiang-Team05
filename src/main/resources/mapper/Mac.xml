@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team05.mapper.MacMapper">
+    <resultMap id="macMap" type="com.team05.domain.mac.Mac">
+        <id column="macId" property="MAC_ID"/>
+        <result property="macNo" column="MAC_NO"/>
+        <result property="macName" column="MAC_NAME"/>
+        <result property="macManageStaffNo" column="MAC_MANAGE_STAFF_NO"/>
+        <result property="macManageStaffName" column="MAC_MANAGE_STAFF_NAME"/>
+        <result property="effectFlag" column="EFFECT_FLAG"/>
+        <result property="createStaffNo" column="CREATE_STAFF_NO"/>
+        <result property="createStaffName" column="CREATE_STAFF_NAME"/>
+        <result property="createDate" column="CREATE_DATE"/>
+    </resultMap>
+
+    <sql id="selectMacSql">
+
+      <where>
+          <if test="parameter.macName != null and parameter.macName !=''">
+              AND MAC_NAME LIKE '%${parameter.macName}%'
+          </if>
+          <if test="parameter.macManageStaffName != null and parameter.macManageStaffName != ''">
+              AND MAC_MANAGE_STAFF_NAME = #{parameter.macManageStaffName}
+          </if>
+      </where>
+
+    </sql>
+
+
+    <select id="selectMacCount" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT COUNT(MAC_ID) FROM pms_mac
+        <include refid="selectMacSql"/>
+    </select>
+
+    <select id="selectAllMacs" resultMap="macMap" parameterType="com.team05.utils.PageBean">
+        SELECT * FROM pms_mac
+        <include refid="selectMacSql"/>
+        limit #{startIndex},#{pageSize}
+    </select>
+
+
+
+
+</mapper>

@@ -49,7 +49,7 @@
 <%--</tr>--%>
 <%--<tr>--%>
 <%--<td>--%>
-<td class="trTitle" colspan="4">当前位置: 综合管理 >> 机组管理</td>
+<td class="trTitle" colspan="4">当前位置: 综合管理 >> 厂房管理</td>
 <div id="layout1" class="mini-layout" style="width:100%; height: 100%;"
      borderStyle="border:solid 1px #aaa;">
     <div title="查询条件" style="background-color: #daeeff" region="north" height="100"
@@ -100,44 +100,18 @@
              pageSize="10">
             <div property="columns">
                 <div type="checkcolumn"></div>
-                <div header="机组" field="unitName"></div>
-                <div header="厂房名称" field="factoryName"></div>
-                <div header="厂房经理" field="factoryManager"></div>
-                <div header="厂房地址" field="factoryAddress"></div>
-                <div header="创建时间" field="createTime"></div>
+                <div header="机组" field="macNO"></div>
+                <div header="厂房名称" field="plantName"></div>
+                <div header="厂房经理" field="plantManageStaffNo"></div>
+                <div header="厂房地址" field="plantAddr"></div>
+                <div header="创建时间" field="createDate"></div>
             </div>
         </div>
     </div>
 </div>
 
 
-<%--<a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>--%>
-<%--<a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>--%>
-<%--<a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>--%>
-<%--<div id="listbox2" class="mini-listbox" style="width:100%;"--%>
-<%--value="cn" onvaluechanged="onListBoxValueChanged"--%>
-<%--url="../text/countrys.txt" showCheckBox="true" multiSelect="true">--%>
-<%--<div property="columns">--%>
-<%--<div header="机组" field="unitName"></div>--%>
-<%--<div header="厂房名称" field="factoryName"></div>--%>
-<%--<div header="厂房经理" field="factoryManager"></div>--%>
-<%--<div header="厂房地址" field="factoryAddress"></div>--%>
-<%--<div header="创建时间" field="createTime"></div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</td>--%>
-<%--</tr>--%>
-<%--<tr>--%>
-<%--<td>--%>
-<%--<div class="mini-pager" style="width:100%;background:#f0f3f7;border:solid 1px #ccc;    "--%>
-<%--totalCount="${session.pageBean.totalPage}" onpagechanged="onPageChanged"--%>
-<%--sizeList="[5,10,20,100]"--%>
-<%--showPageSize="true" showPageIndex="true" showPageInfo="true"--%>
-<%--buttons="#buttons">--%>
-<%--</div>--%>
-<%--</td>--%>
-<%--</tr>--%>
-<%--</table>--%>
+
 
 
 <script type="text/javascript">

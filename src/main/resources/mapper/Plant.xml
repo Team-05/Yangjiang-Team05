@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.PlantMapper">
+
+    <resultMap id="plantMap" type="com.team05.domain.plant.Plant">
+        <id property="plantId" column="PLANT_ID"/>
+        <result property="macNo" column="MAC_NO"/>
+        <result property="plantName" column="PLANT_NAME"/>
+        <result property="plantAddr" column="PLANT_ADDR"/>
+        <result property="plantManageStaffNo" column="PLANT_MANAGE_STAFF_NO"/>
+        <result property="plantManageStaffName" column="PLANT_MANAGE_STAFF_NAME"/>
+        <result property="effectFlag" column="EFFECT_FLAG"/>
+        <result property="createStaffNo" column="CREATE_STAFF_NO"/>
+        <result property="createStaffName" column="CREATE_STAFF_NAME"/>
+        <result property="createDate" column="CREATE_DATE"/>
+    </resultMap>
+
+    <sql id="plantSql">
+        <where>
+            <if test="parameter.plantName != null and parameter.plantName != ''">
+                AND PLANT_NAME LIKE '%${parameter.plantName}%'
+            </if>
+            <if test="parameter.plantManageStaffName != null and parameter.plantManageStaffName != ''">
+                AND PLANT_MANAGE_STAFF_NAME = #{parameter.plantManageStaffName}
+            </if>
+            <if test="parameter.plantAddr != null and parameter.plantAddr != ''">
+                AND PLANT_ADDR LIKE '%${parameter.plantAddr}%'
+            </if>
+            <if test="parameter.macNo != null and parameter.macNo">
+                AND MAC_NO = #{parameter.macNo}
+            </if>
+
+        </where>
+    </sql>
+
+
+    <select id="selectPlantCount" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT count(PLANT_ID) FROM pms_plant
+        <include refid="plantSql"/>
+    </select>
+
+    <select id="selectAllPlants" resultMap="plantMap" parameterType="com.team05.utils.PageBean">
+        SELECT * FROM pms_plant
+        <include refid="plantSql"/>
+        limit #{startIndex},#{pageSize}
+    </select>
+
+
+
+</mapper>

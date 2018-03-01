@@ -5,6 +5,7 @@ import com.team05.domain.plant.Plant;
 import com.team05.mapper.PlantMapper;
 import com.team05.service.PlantService;
 import com.team05.utils.PageBean;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by dllo on 18/2/28.
  */
+@Service("plantService")
 public class PlantServiceImpl implements PlantService{
 
     @Resource

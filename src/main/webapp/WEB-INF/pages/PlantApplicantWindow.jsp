@@ -38,8 +38,9 @@
 
         <div property="columns">
             <div type="checkcolumn"></div>
-            <div field="macManageStaffNo" width="100" headerAlign="center" allowSort="true">管理员编号</div>
-            <div field="macManageStaffName" width="100" headerAlign="center" allowSort="true">管理员姓名</div>
+            <div field="plantManageStaffNo" width="120"
+                 headerAlign="center" allowSort="true">厂房经理编号</div>
+            <div field="plantManageStaffName" width="100" headerAlign="center" allowSort="true">厂房经理</div>
         </div>
     </div>
 
@@ -58,7 +59,7 @@
     var grid = mini.get("grid1");
 
     //动态设置URL
-    grid.setUrl("/manage/selectMac");
+    grid.setUrl("/manage/selectPlant");
 
     grid.load();
 

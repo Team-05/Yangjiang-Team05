@@ -1,5 +1,7 @@
 package com.team05.domain.plant;
 
+import com.team05.domain.mac.Mac;
+
 /**
  * Created by dllo on 18/2/28.
  */
@@ -9,35 +11,36 @@ public class Plant {
             macNo,
             plantName,
             plantAddr,
-            plantManageStaff_no,
+            plantManageStaffNo,
             plantManageStaffName,
             effectFlag,
             createStaffNo,
             createStaffName,
             createDate;
-
+    private Mac mac;
 
     public Plant() {
     }
 
-    public Plant(String macNo, String plantName, String plantAddr, String plantManageStaff_no, String plantManageStaffName, String effectFlag, String createStaffNo, String createStaffName, String createDate) {
+    public Plant(String macNo, String plantName, String plantAddr, String plantManageStaffNo, String plantManageStaffName, String effectFlag, String createStaffNo, String createStaffName, String createDate) {
         this.macNo = macNo;
         this.plantName = plantName;
         this.plantAddr = plantAddr;
-        this.plantManageStaff_no = plantManageStaff_no;
+        this.plantManageStaffNo = plantManageStaffNo;
         this.plantManageStaffName = plantManageStaffName;
         this.effectFlag = effectFlag;
         this.createStaffNo = createStaffNo;
         this.createStaffName = createStaffName;
         this.createDate = createDate;
+
     }
 
-    public Plant(int plantId, String macNo, String plantName, String plantAddr, String plantManageStaff_no, String plantManageStaffName, String effectFlag, String createStaffNo, String createStaffName, String createDate) {
+    public Plant(int plantId, String macNo, String plantName, String plantAddr, String plantManageStaffNo, String plantManageStaffName, String effectFlag, String createStaffNo, String createStaffName, String createDate) {
         this.plantId = plantId;
         this.macNo = macNo;
         this.plantName = plantName;
         this.plantAddr = plantAddr;
-        this.plantManageStaff_no = plantManageStaff_no;
+        this.plantManageStaffNo = plantManageStaffNo;
         this.plantManageStaffName = plantManageStaffName;
         this.effectFlag = effectFlag;
         this.createStaffNo = createStaffNo;
@@ -77,12 +80,12 @@ public class Plant {
         this.plantAddr = plantAddr;
     }
 
-    public String getPlantManageStaff_no() {
-        return plantManageStaff_no;
+    public String getPlantManageStaffNo() {
+        return plantManageStaffNo;
     }
 
-    public void setPlantManageStaff_no(String plantManageStaff_no) {
-        this.plantManageStaff_no = plantManageStaff_no;
+    public void setPlantManageStaffNo(String plantManageStaff_no) {
+        this.plantManageStaffNo = plantManageStaff_no;
     }
 
     public String getPlantManageStaffName() {
@@ -132,7 +135,7 @@ public class Plant {
                 ", macNo='" + macNo + '\'' +
                 ", plantName='" + plantName + '\'' +
                 ", plantAddr='" + plantAddr + '\'' +
-                ", plantManageStaff_no='" + plantManageStaff_no + '\'' +
+                ", plantManageStaff_no='" + plantManageStaffNo + '\'' +
                 ", plantManageStaffName='" + plantManageStaffName + '\'' +
                 ", effectFlag='" + effectFlag + '\'' +
                 ", createStaffNo='" + createStaffNo + '\'' +

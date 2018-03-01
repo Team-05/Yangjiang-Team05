@@ -58,30 +58,28 @@
             <tr>
                 <td style="width:80px">厂房名称</td>
                 <td>
-                    <input id="date1" style="width: 200%"/>
+                    <input id="plantName" style="width: 200%"/>
                 </td>
                 <td style="width: 30%"></td>
                 <td style="width:80px">厂房经理</td>
                 <td>
-                    <input id="btnEdit3" style="width: 200%"
+                    <input id="plantManageStaffName" style="width: 200%"
                            class="mini-buttonedit user_add"
-                           allowInput="false"
-                           onbuttonclick="onClazzButtonEdit"
-                           name="cid" textName="cname"/></td>
+                           onbuttonclick="onManageButtonEdit"
+                           name="plantManageStaffNo" textName="plantManageStaffName"/></td>
             </tr>
             <tr>
                 <td style="width:80px">厂房地址</td>
                 <td>
-                    <input id="btnEdit1" style="width: 200%"/>
+                    <input id="plantAddr" style="width: 200%"/>
                 </td>
                 <td style="width: 30%"></td>
                 <td style="width:80px">机组</td>
                 <td>
-                    <input id="btnEdit2" style="width: 200%"
+                    <input id="macNo" style="width: 200%"
                            class="mini-buttonedit user_add"
-                           allowInput="false"
-                           onbuttonclick="onStudentButtonEdit"
-                           name="cid" textName="cname"/>
+                           onbuttonclick="onMacButtonEdit"
+                           name="plantId" textName="macNo"/>
                 </td>
             </tr>
         </table>
@@ -93,18 +91,18 @@
             <a class="mini-button" iconCls="icon-search" onclick="search()" plain="true" style="float: right">查询</a>
         </div>
         <div id="datagrid1" class="mini-datagrid"
-             url="/person_center/showPCDetail"
+             url="/manage/selectPlant"
              multiSelect="true"
              style="width: 100%;height: 80%"
              sizeList="[5,10,20,50]"
              pageSize="10">
             <div property="columns">
                 <div type="checkcolumn"></div>
-                <div header="机组" field="macNO"></div>
+                <div header="机组" field="macNo"></div>
                 <div header="厂房名称" field="plantName"></div>
-                <div header="厂房经理" field="plantManageStaffNo"></div>
+                <div header="厂房经理" field="plantManageStaffName"></div>
                 <div header="厂房地址" field="plantAddr"></div>
-                <div header="创建时间" field="createDate"></div>
+                <div header="创建时间" field="createDate" dateFormat="yyyy/MM/dd HH:mm:ss"></div>
             </div>
         </div>
     </div>
@@ -116,6 +114,8 @@
 
 <script type="text/javascript">
     mini.parse();
+    var datagrid1 = mini.get("datagrid1");
+    datagrid1.load();
 
     function onTabPositionChange(value) {
         var tabs = mini.get("tabs1");
@@ -127,12 +127,12 @@
         tabs.setTabAlign(value);
     }
 
-    function onClazzButtonEdit(e) {
+    function onManageButtonEdit(e) {
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
-            title: "选择经理",
+            url: "/manage/PlantApplicantWindow",
+            title: "选择厂房经理",
             width: 650,
             height: 380,
             ondestroy: function (action) {
@@ -142,19 +142,19 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.cid);
-                        btnEdit.setText(data.cname);
+                        btnEdit.setValue(data.plantManageStaffName);
+                        btnEdit.setText(data.plantManageStaffName);
                     }
                 }
 
             }
         })
     }
-    function onStudentButtonEdit(e) {
+    function onMacButtonEdit(e) {
         //加载mini组件 后面的get方法才好用
         var btnEdit = this;
         mini.open({
-            url: "",
+            url: "/manage/PlantWindow",
             title: "选择机组",
             width: 650,
             height: 380,
@@ -165,13 +165,33 @@
                     var data = iframe.contentWindow.GetData();
                     data = mini.clone(data);    //必须
                     if (data) {
-                        btnEdit.setValue(data.sid);
-                        btnEdit.setText(data.sname);
+                        btnEdit.setValue(data.macNo);
+                        btnEdit.setText(data.macNo);
                     }
                 }
 
             }
         })
+    }
+
+    function search() {
+
+
+        var plantName = $("#plantName").val();
+        var plantManageStaffName = mini.get("plantManageStaffName").getValue();
+        var plantAddr = $("#plantAddr").val();
+        var macNo =  mini.get("macNo").getValue();
+
+
+        datagrid1.setUrl("/manage/selectPlant");
+
+        datagrid1.load({
+            plantName: plantName,
+            plantManageStaffName: plantManageStaffName,
+            plantAddr:plantAddr,
+            macNo:macNo
+
+        });
     }
 
 

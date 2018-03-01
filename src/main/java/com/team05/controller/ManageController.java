@@ -3,7 +3,9 @@ package com.team05.controller;
 import com.team05.domain.Satellite;
 import com.team05.domain.base.BaseResult;
 import com.team05.domain.mac.Mac;
+import com.team05.domain.plant.Plant;
 import com.team05.service.MacService;
+import com.team05.service.PlantService;
 import com.team05.service.SatelliteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,9 @@ public class ManageController {
 
     @Resource
     private MacService macService;
+
+    @Resource
+    private PlantService plantService;
 
     @RequestMapping("/RightBody_Manage")
     public String manage(){
@@ -86,4 +91,23 @@ public class ManageController {
         BaseResult<Satellite> satellites=satelliteService.selectManageStaff(satellite,pageIndex,pageSize);
         return satellites;
     }
+
+    @ResponseBody
+    @RequestMapping("/selectPlant")
+    public BaseResult<Plant> selectPlant(Plant plant, int pageIndex, int pageSize){
+        BaseResult<Plant> result = plantService.selectPlant(plant,pageIndex,pageSize);
+        return result;
+    }
+
+    @RequestMapping(value = "/PlantApplicantWindow")
+    public String plantApplicantWindow(){
+        return "PlantApplicantWindow";
+    }
+
+    @RequestMapping(value = "/PlantWindow")
+    public String plantWindow(){
+        return "PlantWindow";
+    }
+
+
 }

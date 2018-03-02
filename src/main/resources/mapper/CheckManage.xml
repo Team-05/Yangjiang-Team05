@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.CheckManageMapper">
+    <sql id="checkManageColumns">
+         app_id,
+         app_no,
+         processinstid,
+         app_type,
+         theme,
+         apply_date,
+         flow_app_staff_no,
+         flow_app_staff_name,
+         app_dept_id,
+         app_dept_name,
+         busiapp_staff_no,
+         busiapp_staff_name,
+         busiapp_dept_id,
+         busiapp_dept_name,
+         busi_link_desc,
+         data_org_no,
+         app_ym,
+         print_flag,
+         can_print_flag,
+         status,
+         multi_flow_flag,
+         effect_flag,
+         create_staff_no,
+         create_staff_name,
+         create_date
+    </sql>
+
+    <!--高级查询sql片段-->
+    <sql id="checkSql">
+        <where>
+            <if test="parameter.applyDate !=null and parameter.applyDate!=''">
+                AND apply_date=#{parameter.applyDate}
+            </if>
+            <if test="parameter.flowAppStaffName != null and parameter.flowAppStaffName != ''">
+                AND FLOW_APP_STAFF_NAME = #{parameter.flowAppStaffName}
+            </if>
+            <if test="parameter.appDeptName != null and parameter.appDeptName != ''">
+                AND APP_DEPT_NAME = #{parameter.appDeptName}
+            </if>
+            <if test="parameter.appId != null and parameter.appId != ''">
+                AND APP_ID LIKE '%${parameter.appId}%'
+            </if>
+            <if test="parameter.appType !=null and parameter.appType !=''">
+                AND app_type =#{parameter.appType}
+            </if>
+            <if test="parameter.effectFlag !=null and parameter.effectFlag!=''">
+                AND effect_flag=#{parameter.effectFlag}
+            </if>
+        </where>
+    </sql>
+
+    <resultMap id="checkManageMap" type="com.team05.domain.CheckManage">
+        <id property="appId" column="app_id"/>
+        <result property="appNo" column="app_no"/>
+        <result property="processinstId" column="processinstid"/>
+        <result property="appType" column="app_type"/>
+        <result property="theme" column="theme"/>
+        <result property="applyDate" column="apply_date"/>
+        <result property="flowAppStaffNo" column="flow_app_staff_no"/>
+        <result property="flowAppStaffName" column="flow_app_staff_name"/>
+        <result property="appDeptId" column="app_dept_id"/>
+        <result property="appDeptName" column="app_dept_name"/>
+        <result property="busiappStaffNo" column="busiapp_staff_no"/>
+        <result property="busiappStaffName" column="busiapp_staff_name"/>
+        <result property="busiappDeptId" column="busiapp_dept_id"/>
+        <result property="busiappDeptName" column="busiapp_dept_name"/>
+        <result property="busiLinkDesc" column="busi_link_desc"/>
+        <result property="dataOrgNo" column="data_org_no"/>
+        <result property="appYM" column="app_ym"/>
+        <result property="printFlag" column="print_flag"/>
+        <result property="canPrintFlag" column="can_print_flag"/>
+        <result property="status" column="status"/>
+        <result property="multiFlowFlag" column="multi_flow_flag"/>
+        <result property="effectFlag" column="effect_flag"/>
+        <result property="createStaffNo" column="create_staff_no"/>
+        <result property="createStaffName" column="create_staff_name"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+    <!--流程申请信息条数-->
+    <select id="checkManagePage" resultType="java.lang.Integer"
+            parameterType="com.team05.utils.PageBean">
+        SELECT
+        count(app_id)
+        FROM pms_flow_apply
+        <include refid="checkSql"/>
+    </select>
+    <!--查询全部流程申请信息-->
+    <select id="selectAllCheck" resultMap="checkManageMap"
+            parameterType="com.team05.utils.PageBean">
+        select
+        <include refid="checkManageColumns"/>
+        from pms_flow_apply
+        <include refid="checkSql"/>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <!--查询全部流程类型-->
+    <select id="selectAppType" resultType="java.lang.String">
+        select DISTINCT app_type from pms_flow_apply
+    </select>
+    <!--查询是否打印-->
+    <select id="selectEffectFlag" resultType="java.lang.String">
+        select DISTINCT effect_flag from pms_flow_apply
+    </select>
+
+</mapper>

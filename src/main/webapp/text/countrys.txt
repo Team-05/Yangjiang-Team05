@@ -1,17 +1,11 @@
 [
-    {
-    "unitName":"机组A",
-    "factoryName":"厂房A",
-    "factoryManager":"老王",
-    "factoryAddress":"地址A",
-    "createTime":"2018-02-6"
-
-    },
-    {
-    "unitName":"机组B",
-    "factoryName":"厂房B",
-    "factoryManager":"龙经理",
-    "factoryAddress":"地址B",
-    "createTime":"2018-02-6"
-     },
+    { "text": "美国" },
+    { "text": "中国" },
+    { "text": "日本" },
+    { "text": "英国" },
+    { "text": "德国" },
+    { "text": "法国" },
+	{ "text": "加拿大" },
+	{ "text": "奥地利" },
+	{ "text": "瑞士" }
 ]

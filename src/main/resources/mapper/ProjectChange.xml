@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team05.mapper.ProjectChangeMapper">
+
+    <resultMap id="proChangeMap" type="com.team05.domain.ProjectChange">
+        <id property="pmsChange" column="pms_change"/>
+        <result property="projId" column="proj_id"/>
+        <result property="projName" column="proj_name"/>
+        <result property="projAssumeStaffNo" column="proj_assume_staff_no"/>
+        <result property="projAssumeStaffName" column="proj_assume_staff_name"/>
+        <result property="assumeDeptId" column="assume_dept_id"/>
+        <result property="assumeDeptName" column="assume_dept_name"/>
+        <result property="chgReason" column="chg_reason"/>
+        <result property="chgContent" column="chg_content"/>
+        <result property="effectFlag" column="effect_flag"/>
+        <result property="createStaffNo" column="create_staff_no"/>
+        <result property="createStaffName" column="create_staff_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="deptManager" column="dept_manager"/>
+    </resultMap>
+
+    <insert id="insertProChange" parameterType="com.team05.domain.ProjectChange">
+        insert into rdms_proj_change (pms_change,proj_name,assume_dept_name,proj_assume_staff_name,chg_reason,chg_content,dept_manager)
+        values (#{pmsChange},#{projName},#{assumeDeptName},#{projAssumeStaffName},#{chgReason},#{chgContent},#{deptManager})
+    </insert>
+
+
+</mapper>

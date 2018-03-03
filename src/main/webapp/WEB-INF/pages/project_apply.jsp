@@ -31,12 +31,12 @@
             margin: 1px;
             font-size: medium;
         }
-        /*td {*/
-            /*border-collapse: collapse;*/
-            /*padding: 3px;*/
-            /*height: 20px;*/
-        /*}*/
 
+        /*td {*/
+        /*border-collapse: collapse;*/
+        /*padding: 3px;*/
+        /*height: 20px;*/
+        /*}*/
 
         html body .user_add .mini-buttonedit-icon {
             background: url(/scripts/miniui/res/images/user_add.png) no-repeat 50% 50%;
@@ -46,7 +46,7 @@
 </head>
 <body>
 
-<div >
+<div id="form1">
     <div class="trTitle" colspan="4">当前位置: 项目成果与计划调整申请</div>
     <div id="div1" class="mini-panel"
          margin-top="0px" title="申请信息"
@@ -58,7 +58,7 @@
             <tr>
                 <td style="width:120px">项目名称<font color="red">※</font></td>
                 <td>
-                    <input id="rr" style="width: 40%;"/>
+                    <input id="projName" name="projName" style="width: 40%;height: 25px" class="mini-textarea"/>
                 </td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@
                            class="mini-buttonedit user_add"
                            allowInput="false"
                            onbuttonclick="onDepartmentButtonEdit"
-                           name="depId" textName="depName"/>
+                           name="assumeDeptName" textName="depName"/>
                 </td>
                 <td style="width:120px">项目负责人<font color="red">※</font></td>
                 <td>
@@ -76,20 +76,21 @@
                            class="mini-buttonedit user_add"
                            allowInput="false"
                            onbuttonclick="onApplicantButtonEdit"
-                           name="staffId" textName="staffName"/>
+                           name="projAssumeStaffName" textName="staffName"/>
                 </td>
             </tr>
 
             <tr>
             <tr>
                 <td style="width:120px">调整原因<font color="red">※</font></td>
-                <td colspan="3"><input style="width: 100%;overflow-y:auto" class="mini-textarea"/></td>
+                <td colspan="3"><input name="chgReason" style="width: 100%;overflow-y:auto" class="mini-textarea"/></td>
             </tr>
             </tr>
             <tr>
             <tr>
                 <td style="width:120px">调整内容<font color="red">※</font></td>
-                <td colspan="3"><input style="width: 100%;overflow-y:auto" class="mini-textarea"/></td>
+                <td colspan="3"><input name="chgContent" style="width: 100%;overflow-y:auto" class="mini-textarea"/>
+                </td>
             </tr>
             </tr>
 
@@ -110,15 +111,15 @@
                            class="mini-buttonedit user_add"
                            allowInput="false"
                            onbuttonclick="onManagerButtonEdit"
-                           name="staffId" textName="staffName"/>
+                           name="deptManager" textName="staffName"/>
                 </td>
                 <td></td>
                 <td></td>
             </tr>
         </table>
+    </div>
 </div>
-</div>
-<input type="button" value="提交" style="float: right">
+<input type="button" value="提交" style="float: right" onclick="submitForm()">
 
 
 <script>
@@ -217,8 +218,39 @@
 
     function submitForm() {
 
-        var data = getForm();
-//        $("#form").val(data);
+        //提交表单数据
+        var form = new mini.Form("#form1");
+        var data = form.getData();      //获取表单多个控件的数据
+
+        var projName = data.projName;
+        var assumeDeptName = data.assumeDeptName;
+        var projAssumeStaffName = data.projAssumeStaffName;
+        var chgReason = data.chgReason;
+        var chgContent = data.chgContent;
+        var deptManager = data.deptManager;
+
+//        var json = mini.encode(data);   //序列化成JSON
+
+        $.ajax({
+            url: "/projectChange/insertProChange",
+            type: "post",
+            data: {
+                projName: projName,
+                assumeDeptName: assumeDeptName,
+                projAssumeStaffName: projAssumeStaffName,
+                chgReason: chgReason,
+                chgContent: chgContent,
+                deptManager: deptManager
+            },
+            success: function (text) {
+                if (text > 0) {
+                    alert("提交成功！");
+                } else {
+                    alert("提交失败！")
+                }
+
+            }
+        });
 
     }
 

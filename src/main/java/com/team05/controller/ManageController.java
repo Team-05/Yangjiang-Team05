@@ -90,6 +90,12 @@ public class ManageController {
         BaseResult<Satellite> satellites = satelliteService.selectAllSatellite(satellite,pageIndex,pageSize);
         return satellites;
     }
+    //删除卫星库
+    @RequestMapping(value="deleteSatellite")
+    @ResponseBody
+    public void deleteSatellite(String bimsStoreId){
+        satelliteService.deleteSatellite(bimsStoreId);
+    }
     //查询管理人员
     @RequestMapping(value="/selectManageStaff")
     @ResponseBody

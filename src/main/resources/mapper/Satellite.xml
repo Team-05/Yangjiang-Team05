@@ -76,4 +76,11 @@
         limit #{startIndex},#{pageSize}
     </select>
 
+    <delete id="deleteSatellite" parameterType="java.util.List">
+        DELETE FROM pms_bims_store where bims_store_id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
 </mapper>

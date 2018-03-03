@@ -8,4 +8,5 @@ import com.team05.domain.base.Staff;
  */
 public interface StaffService {
     BaseResult<Staff> selectStaff(Staff staff, int pageIndex, int pageSize);
+
 }

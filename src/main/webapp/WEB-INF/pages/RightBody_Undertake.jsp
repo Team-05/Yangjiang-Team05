@@ -186,7 +186,11 @@
                 <td>
                     <%--<input id="tt" style="width: 20%" class="mini-buttonedit-icon user_add"/>--%>
                         <%--Kinjer修改 2018.2.8 8:53--%>
-                    <input id="tt" style="width: 20%" class="mini-buttonedit user_add"/>
+                    <input id="tt" style="width: 20%"
+                           class="mini-buttonedit user_add"
+                           allowInput="false"
+                           onbuttonclick="onApplicantButtonEdit"
+                           name="staffId" textName="staffName"/>
                 </td>
             </tr>
 
@@ -195,6 +199,34 @@
 </div>
 <input type="button" value="提交" style="float: right">
 
+<script>
+    mini.parse();
+
+    function onApplicantButtonEdit(e) {
+        //加载mini组件 后面的get方法才好用
+        var btnEdit = this;
+
+        mini.open({
+            url: "/person_center/applicantGridWindow",
+            title: "选择负责人",
+            width: 650,
+            height: 380,
+            ondestroy: function (action) {
+                //if (action == "close") return false;
+                if (action == "ok") {
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.GetData();
+                    data = mini.clone(data);    //必须
+                    if (data) {
+                        btnEdit.setValue(data.staffName);
+                        btnEdit.setText(data.staffName);
+                    }
+                }
+
+            }
+        })
+    }
+</script>
 
 
 

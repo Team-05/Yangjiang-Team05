@@ -59,6 +59,8 @@
         </div>
         <div title="center" region="center" style="width: 100%; height: 800px">
             <div>
+                <a class="mini-button" iconCls="icon-add" onclick="addRow()" plain="true" style="float: right">增加</a>
+                <a class="mini-button" iconCls="icon-remove" onclick="removeRow()" plain="true" style="float: right">删除</a>
                 <a class="mini-button" iconCls="icon-search" onclick="search1()" plain="true" style="float: right">查询</a>
             </div>
             <div id="datagrid1" class="mini-datagrid"
@@ -69,6 +71,7 @@
                  pageSize="10">
                 <div property="columns">
                     <div type="checkcolumn"></div>
+                    <div id="bimsStoreId" field="bimsStoreId" width="120" hreaderAlign="center" visible="false"></div>
                     <div field="bimsStoreName" width="120" headerAlign="center">卫星库</div>
                     <div field="manageStaffName" width="120" headerAlign="center">管理人员</div>
                     <div field="createDate" dateFormat="yyyy/MM/dd HH:mm:ss" width="120" headerAlign="center">创建日期</div>
@@ -116,7 +119,34 @@
             }
         })
     }
+    function removeRow() {
 
+        var rows = datagrid1.getSelecteds();
+        if (rows.length > 0) {
+            if (confirm("确定删除选中记录？")) {
+                var ids = [];
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    var r = rows[i];
+                    ids.push(r.bimsStoreId);
+                }
+                var id = ids.join(',');
+                datagrid1.loading("操作中，请稍后......");
+                $.ajax({
+                    url: "/manage/deleteSatellite?bimsStoreId=" +id,
+                    success: function (text) {
+                        datagrid1.unmask();
+                        datagrid1.reload();
+                    },
+                    error: function () {
+                        datagrid1.unmask();
+                        datagrid1.reload();
+                    }
+                });
+            }
+        } else {
+            alert("请选中一条记录");
+        }
+    }
 
 </script>
 </body>

@@ -1,6 +1,7 @@
 package com.team05.service.impl;
 
 import com.fasterxml.jackson.databind.deser.Deserializers;
+import com.sun.xml.internal.xsom.impl.scd.Iterators;
 import com.team05.domain.Satellite;
 import com.team05.domain.base.BaseResult;
 import com.team05.domain.base.Staff;
@@ -10,6 +11,7 @@ import com.team05.utils.PageBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -56,5 +58,11 @@ public class SatelliteServiceImpl implements SatelliteService{
         result.setData(satellites);
 
         return result;
+    }
+
+    public int deleteSatellite(String bimsStoreId ) {
+        List<String> bimsStoreIdList= Arrays.asList(bimsStoreId.split(","));
+        int count=satelliteMapper.deleteSatellite(bimsStoreIdList);
+        return count;
     }
 }

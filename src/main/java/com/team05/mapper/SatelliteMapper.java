@@ -19,4 +19,6 @@ public interface SatelliteMapper {
     List<Satellite> selectAllSatellite(PageBean<Satellite> pageBean);
 
     List<Satellite> selectManageStaff(PageBean<Satellite> pageBean);
+
+    Integer deleteSatellite(List<String> bimsStoreIdList);
 }

@@ -27,7 +27,7 @@
 
         <div class="clear"></div>
         <input type="submit" value="登录">
-        <p>${error}</p>
+        <p style="color: white">${error}</p>
     </form>
 </div>
 

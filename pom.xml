@@ -10,6 +10,7 @@
   <properties>
     <spring-version>4.3.8.RELEASE</spring-version>
     <shiro-version>1.2.2</shiro-version>
+    <activiti.version>6.0.0</activiti.version>
   </properties>
 
   <dependencies>
@@ -147,6 +148,40 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.6.4</version>
     </dependency>
+
+    <!-- activiti BEGIN -->
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-engine</artifactId>
+      <version>${activiti.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-bpmn-model</artifactId>
+      <version>${activiti.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-bpmn-converter</artifactId>
+      <version>${activiti.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-process-validation</artifactId>
+      <version>${activiti.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-bpmn-layout</artifactId>
+      <version>${activiti.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.activiti</groupId>
+      <artifactId>activiti-spring</artifactId>
+      <version>${activiti.version}</version>
+    </dependency>
+    <!-- activiti END -->
+
   </dependencies>
 
   <build>

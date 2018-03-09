@@ -22,7 +22,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-test:4.3.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.3.8.RELEASE" level="project" />
@@ -72,5 +71,26 @@
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:slf4j-simple:1.6.4" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.6.4" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-engine:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-image-generator:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-dmn-api:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-dmn-model:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-form-model:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-form-api:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-email:1.4" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.5.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
+    <orderEntry type="library" name="Maven: de.odysseus.juel:juel-api:2.2.7" level="project" />
+    <orderEntry type="library" name="Maven: de.odysseus.juel:juel-impl:2.2.7" level="project" />
+    <orderEntry type="library" name="Maven: de.odysseus.juel:juel-spi:2.2.7" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.6" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.6" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-bpmn-model:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-bpmn-converter:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-process-validation:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-bpmn-layout:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.tinyjee.jgraphx:jgraphx:1.10.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.activiti:activiti-spring:6.0.0" level="project" />
   </component>
 </module>
